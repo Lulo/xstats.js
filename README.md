@@ -1,11 +1,11 @@
 # xStats.js
-#### Cross-browser Javascript Performance Monitor ####
+## Cross-browser JavaScript Performance Monitor
 
 xStats provides simple charts to help monitor your code performance.
 
 * **FPS** Frames rendered in the last second. The higher the number the better.
 * **MS** Milliseconds needed to render a frame. The lower the number the better.
-* **MEM** Percentage of memory allocated. Make sure it doesn't keep incrementing. (Webkit-based browsers only)
+* **MEM** Percentage of memory allocated. Make sure it doesn't keep incrementing. (WebKit-based browsers only)
 
 ## Screenshots
 
@@ -13,7 +13,7 @@ xStats provides simple charts to help monitor your code performance.
 
 ## Documentation
 
-The documentation for xStats.js can be viewed here: <[/docs/xstats.md](/jdalton/xstats.js/blob/master/docs/xstats.md#readme)>
+The documentation for xStats.js can be viewed here: [/docs/xstats.md](/jdalton/xstats.js/blob/master/docs/xstats.md#readme)
 
 ## Usage
 
