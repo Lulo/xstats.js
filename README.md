@@ -1,7 +1,7 @@
 # xStats.js
-#### Javascript Performance Monitor ####
+#### Cross-browser Javascript Performance Monitor ####
 
-xStats provides a simple chart to help monitor your code performance.
+xStats provides simple charts to help monitor your code performance.
 
 * **FPS** Frames rendered in the last second. The higher the number the better.
 * **MS** Milliseconds needed to render a frame. The lower the number the better.
@@ -28,5 +28,5 @@ The documentation for xStats.js can be viewed here: <[/docs/xstats.md](/jdalton/
   * MacOS: `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-memory-info`
 
 * **Safari**
-  * MacOS: Open `~/Library/Preferences/com.apple.Safari.plist` file for editing, and add &
-    set enabled a boolean preference *WebKitMemoryInfoEnabled* ([pic](http://mrdoob.github.com/stats.js/assets/safari_enablemem.png))
+  * MacOS: Open `~/Library/Preferences/com.apple.Safari.plist` file for editing, and 
+    check `WebKitMemoryInfoEnabled` *([screenshot](http://mrdoob.github.com/stats.js/assets/safari_enablemem.png))*
