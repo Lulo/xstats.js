@@ -479,6 +479,9 @@
   // expose
   window.xStats = xStats;
 
+  // ensure we can read memory info
+  memoryNS = memoryTotal && memoryNS;
+
   // start recording
   (function() {
     var reqFrame = window.requestAnimationFrame ||
