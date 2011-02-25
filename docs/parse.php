@@ -166,7 +166,7 @@
         $hash = str_replace("#", ":", $member) . ($isCtor ? "" : ($isStatic ? "." : ":") . $name);
 
         // define #{link}
-        $link = "https://github.com/jdalton/xStats/blob/master/xstats.js#L" . $ln;
+        $link = "https://github.com/jdalton/xstats.js/blob/master/xstats.js#L" . $ln;
 
         // create entry
         $item = array(

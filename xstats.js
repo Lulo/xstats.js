@@ -186,6 +186,7 @@
         percent = Math.min(100, 100 * (value / (mode == 'fps' ? 120 : mode == 'ms' ? 1e3 : memoryTotal)));
 
     value = Math.round(mode == 'mem' ? percent : value);
+    percent = mode == 'mem' ? percent / 2 : percent;
     data.min = Math.min(data.min != null ? data.min : value, value);
     data.max = Math.max(data.max != null ? data.max : value, value);
     data.length = [data.length, data.unshift({ 'value': value, 'percent': percent })][0];
@@ -225,7 +226,7 @@
    * Updates chart data and display of all xStats instances.
    * @private
    */
-  function update() {console.log('hi')
+  function update() {
     var canvas,
         entry,
         me,
@@ -309,7 +310,7 @@
         ms = extend({ }, me.ms),
         mem = extend({ }, me.mem),
         tmp = { },
-        uid = 'stats' + cache.counter++;
+        uid = 'xstats' + cache.counter++;
 
     // apply options
     extend(me, options || (options = { }));
@@ -346,7 +347,7 @@
       interpolate('.#{uid}-mem{color:#{fg}}.#{uid}-mem .#{uid}-bg{background:#{bg}}.#{uid}-mem li{background:#{fg};border-color:#{bg}}', extend(tmp, mem)));
 
     // build interface
-    element.className = interpolate('#{uid} #{uid}-' + me.mode, me);
+    element.className = interpolate('xstats #{uid} #{uid}-' + me.mode, me);
     element.innerHTML = interpolate('<div class=#{uid}-bg></div><div class=#{uid}-mi><p>&nbsp;</p><ul>' + repeat('<li></li>', length) + '</ul></div><div class=#{uid}-fg></div>', me);
     addListener(element, 'click', createSwapMode(me));
 
