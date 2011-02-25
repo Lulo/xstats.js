@@ -1,4 +1,4 @@
-Stats.js
+xStats.js
 ========
 
 #### Javascript Performance Monitor ####
@@ -19,20 +19,9 @@ This class provides a simple info box that will help you monitor your code perfo
 
 ### Usage ###
 
-	var stats = new Stats();
-
-	// Align top-left
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.left = '0px';
-	stats.domElement.style.top = '0px';
-
-	parentElement.appendChild( stats.domElement );
-
-	setInterval( function () {
-
-		stats.update();
-
-	}, 1000 / 60 );
+	var stats = new Stats;
+	stats.element.style.cssText = "position:absolute;left:0;top:0";
+	document.body.appendChild(stats.element);
 
 ### Enable MEM ###
 
@@ -43,42 +32,3 @@ This class provides a simple info box that will help you monitor your code perfo
 
 * **Safari** 
   * MacOS: Open `~/Library/Preferences/com.apple.Safari.plist` file for editing, and add & set enabled a boolean preference *WebKitMemoryInfoEnabled* ([pic](http://mrdoob.github.com/stats.js/assets/safari_enablemem.png))
-
-### Bookmarklet ###
-
-Albeit theorically not as accurate the widget can also be easily inserted to **any site** using the bookmarklet.
-[Follow the instructions](http://mrdoob.com/blog/post/707).
-
-### Change Log ###
-
-2010 09 21 - **r5** (3.800 kb)
-
-* Different color per mode.
-* Added MEM mode. (Webkit-based browsers only)
-* Force text left aligned.
-
-
-2010 06 11 - **r4** (2.235 kb)
-
-* Added MS mode.
-
-
-2010 05 12 - **r3** (1.241 kb)
-
-* Switched to module pattern code style.
-* Removed `position = 'absolute'`.
-
-
-2010 03 01 - **r2** (2.177 kb)
-
-* Simplified.
-
-
-2010 02 21 - **r1**
-
-* Accurate FPS calculation. (thx Spite!)
-
- 
-2009 08 09 - **r0**
-
-* Base code.

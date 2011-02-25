@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>xStats.js test page</title>
+<meta charset="utf-8">
+<style>
+body {
+  background: #000;
+}
+button {
+ display: block;
+}
+canvas {
+  margin: 20px 0 0 0;
+}
+</style>
+<script src="../xstats.js"></script>
+<script>
+/*!
+ * BunnyMark
+ * Created by Iain Lobb <http://blog.iainlobb.com/search?q=bunny>
+ * Ported to JS by Seb Lee-Delisle <http://sebleedelisle.com/2011/02/html5-canvas-sprite-optimisation/>
+ * Modified by John-David Dalton <http://allyoucanleet.com/>
+ */
+window.onload = function() {
+  var fillStyle,
+      bgImg = new Image,
+      bunnyImg = new Image,
+      canvas = document.getElementById('forest'),
+      ctx = ('getContext' in canvas) && canvas.getContext('2d');
+      bunnies = [],
+      gravity = 3,
+      maxX = 640,
+      minX = 0,
+      maxY = 480,
+      minY = 0;
+
+  function Bunny() {
+    this.speedX = Math.random() * 10;
+    this.speedY = (Math.random() * 10) - 5;
+    this.x = 0;
+    this.y = 0;
+  }
+
+  function more(number) {
+    if (typeof number != 'number') {
+      number = 2e3;
+    }
+    while (number--) {
+      bunnies.push(new Bunny);
+    }
+  }
+
+  function render() {
+    var bunny,
+        i = -1;
+
+    ctx.fillStyle = fillStyle || (fillStyle = ctx.createPattern(bgImg, 'repeat'));
+    ctx.fillRect(0, 0, maxX, maxY);
+
+    while (bunny = bunnies[++i]) {
+      bunny.x += bunny.speedX;
+      bunny.y += bunny.speedY;
+      bunny.speedY += gravity;
+
+      if (bunny.x > maxX) {
+        bunny.speedX *= -1;
+        bunny.x = maxX;
+      }
+      else if (bunny.x < minX) {
+        bunny.speedX *= -1;
+        bunny.x = minX;
+      }
+      if (bunny.y > maxY) {
+        bunny.speedY *= -.8;
+        bunny.y = maxY;
+        if (Math.random() > .5){
+          bunny.speedY -= Math.random() * 12;
+        }
+      }
+      else if (bunny.y < minY){
+        bunny.speedY = 0;
+        bunny.y = minY;
+      }
+      ctx.drawImage(bunnyImg,  bunny.x, bunny.y);
+    }
+  }
+
+  ctx && (function() {
+    var button = document.createElement('button'),
+        callback = function() { render(); reqFrame(callback); },
+        reqFrame = window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame;
+
+    canvas.parentNode.insertBefore(button, canvas.nextSibling);
+    button.innerHTML = 'Moar Bunnies!';
+    button.onclick = more;
+
+    bgImg.src = 'data:image/gif;base64,' +
+		  'R0lGODlhIAAgAJEAADvWYkWlXcnvQAAAACH5BAAAAAAALAAAAAAgACAAAALxjAN5gIIgGHsxiWiSurq7' +
+		  'wCEZxDGXY2Fjoz5Kcyzbm2an9YJOaz0uO6lMJCaMJjQc0QzGTVOlcUFyuVgJ81FMYDZtSEkU2cY6YIy0' +
+		  '4F1iwM85JfmWpEKqChkSvrXepA9k0hEXlMG2oaRn9RS3duiB01c4FcVHsZK3JTP1lySos0V5VNHIGLbZ' +
+		  'kEmBIwNStlI2OVL3+seGUsEVW5K6iYMU6DQUNLQDKQlo6PNlo4cCISIsCSVFZNSEjJk2K4ZKkTXXqirB' +
+		  '1HiLyySIu+nsGSsbdE7G3HtSaDuODD+KD0iUGaesxRpoPCI1ImcvkzU/HPQUAAA7';
+
+    bunnyImg.src = 'data:image/gif;base64,' +
+	    'R0lGODlhGgAlAKIFAOumBYVeA////wAAALiDBPT29gAAAAAAACH5BAEAAAUALAAAAAAaACUAAAPCWLrT' +
+	    'vcU9SCMBGAw1Mt4VQwikxo0lGFqkYLLperbvgLpqaLcEuMcy24hAbBCHr5XwyGQmdc0o8VlZSo9UytJa' +
+	    'nOaqR27PK7NcnV9tU4KuOqSkqMYRCdgDcIHU07jbz4AbEn+AYXRahBceTGkQA4QALSUARWWPeJGSJZVB' +
+	    'f5malD2Wnpqbop2YpS6cSqSloY0MrqCsOpC0tVWJHqG5iHiFsRyJfonCdcDFd76OfxKDeMeXsdOjAdR2' +
+	    '0tmt19bY3ZbSaQkAOw==';
+
+    if (reqFrame) {
+      reqFrame(callback);
+    } else {
+      setInterval(render, 1e3/60);
+    }
+    more(500);
+  }());
+};
+</script>
+</head>
+<body>
+<script>
+(function() {
+  var a = new xStats({'height': 130, 'width':200, 'padding':10 });
+  document.body.appendChild(a.element);
+
+  var b = new xStats({ 'mode': 'fps', 'locked': true });
+  document.body.appendChild(b.element);
+
+  var c = new xStats({ 'mode': 'ms', 'locked': true });
+  document.body.appendChild(c.element);
+
+  var d = new xStats({ 'mode': 'mem', 'locked': true });
+  document.body.appendChild(d.element);
+}());
+</script>
+<canvas id="forest" width="640" height="480"></canvas>
+</body>
+</html>
