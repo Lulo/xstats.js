@@ -64,7 +64,7 @@
    * @param {String} cssText The css text of the style sheet.
    */
   function createStyleSheet(cssText) {
-    var head = document.getElementsByTagName('head')[0],
+    var head = document.head || document.getElementsByTagName('head')[0],
         style = createElement('style'),
         rules = document.createTextNode(cssText);
 
@@ -341,7 +341,7 @@
         '.#{uid},.#{uid}-fg,.#{uid}-bg{width:#{width}px;height:#{height}px}' +
         '.#{uid} li{float:left;width:1px;height:100%;border-top-width:#{innerHeight}px;border-top-style:solid}' +
         '.#{uid}-mi{position:absolute;overflow:hidden;margin:#{padding}px;width:#{innerWidth}px;height:#{miHeight}px}' +
-        '.#{uid}{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none;font-family:Helvetica,Arial,sans-serif;font-size:.6em}', extend(tmp, me)) +
+        '.#{uid}{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none;font-family:sans-serif;font-size:.6em}', extend(tmp, me)) +
       interpolate('.#{uid}-fps{color:#{fg}}.#{uid}-fps .#{uid}-bg{background:#{bg}}.#{uid}-fps li{background:#{fg};border-color:#{bg}}', extend(tmp, fps)) +
       interpolate('.#{uid}-ms{color:#{fg}}.#{uid}-ms .#{uid}-bg{background:#{bg}}.#{uid}-ms li{background:#{fg};border-color:#{bg}}', extend(tmp, ms)) +
       interpolate('.#{uid}-mem{color:#{fg}}.#{uid}-mem .#{uid}-bg{background:#{bg}}.#{uid}-mem li{background:#{fg};border-color:#{bg}}', extend(tmp, mem)));
