@@ -42,7 +42,7 @@ window.onload = function() {
     this.y = 0;
   }
 
-  function more(number) {
+  function moar(number) {
     if (typeof number != 'number') {
       number = 2e3;
     }
@@ -97,7 +97,7 @@ window.onload = function() {
 
     canvas.parentNode.insertBefore(button, canvas.nextSibling);
     button.innerHTML = 'Moar Bunnies!';
-    button.onclick = more;
+    button.onclick = moar;
 
     bgImg.src = 'data:image/gif;base64,' +
 		  'R0lGODlhIAAgAJEAADvWYkWlXcnvQAAAACH5BAAAAAAALAAAAAAgACAAAALxjAN5gIIgGHsxiWiSurq7' +
@@ -118,7 +118,7 @@ window.onload = function() {
     } else {
       setInterval(render, 1e3/60);
     }
-    more(500);
+    moar(500);
   }());
 };
 </script>

@@ -2,7 +2,7 @@
  * xStats.js
  * Copyright 2011 John-David Dalton <http://allyoucanleet.com/>
  * Based on Stats.js, copyright Ricardo Cabello <http://mrdoob.com/>
- * Available under MIT license <http://www.opensource.org/licenses/mit-license.php>
+ * Available under MIT license <https://github.com/jdalton/xstats.js/raw/master/LICENSE>
  */
 (function(window, document) {
 
