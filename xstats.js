@@ -144,13 +144,12 @@
   function createSwapMode(me) {
     return function() {
       if (!me.locked) {
-        var nodes,
-            mode = me.mode == 'fps' ? 'ms' : me.mode == 'ms' ? (memoryNS ? 'mem' : 'fps') : 'fps',
+        var mode = me.mode == 'fps' ? 'ms' : me.mode == 'ms' ? (memoryNS ? 'mem' : 'fps') : 'fps',
             element = me.element,
             nodes = me.canvas.childNodes,
             data = cache.data[mode],
             entry = data[0],
-            pad = me.innerWidth,
+            pad = nodes.length,
             length = pad--;
 
         me.mode = mode;
@@ -482,7 +481,7 @@
   // shared css
   appendCSS(
     '.xstats div{position:absolute;overflow:hidden}' +
-    '.xstats p{margin:0 0 1px 0;font-family:sans-serif;font-size:.6em;white-space:nowrap}' +
+    '.xstats p{margin:0 0 1px 0;font-family:sans-serif;font-size:.6em;white-space:nowrap;-webkit-text-size-adjust:100%}' +
     '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
     '.xstats li{float:left;width:2px;margin-left:-1px;height:100%}' +
     '.xstats .bg{opacity:.5;filter:alpha(opacity=50)}' +
