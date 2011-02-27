@@ -59,7 +59,7 @@
         sheet = cache.sheet;
     if (!sheet){
       node = document.getElementsByTagName('head')[0];
-      sheet = cache.sheet = createElement('style');
+      sheet = cache.sheet = document.createElement('style');
       sheet.type = 'text/css';
       node.insertBefore(sheet, node.firstChild);
     }
@@ -68,16 +68,6 @@
       node = sheet.firstChild || sheet.appendChild(document.createTextNode(''));
     }
     node[prop] += cssText;
-  }
-
-  /**
-   * Shortcut for document.createElement().
-   * @private
-   * @param {String} tag The tag name of the element to create.
-   * @returns {Object} A new of the given tag name element.
-   */
-  function createElement(tagName) {
-    return document.createElement(tagName);
   }
 
   /**
@@ -187,7 +177,6 @@
     var data = cache.data[mode],
         percent = Math.min(100, 100 * (value / (mode == 'fps' ? 120 : mode == 'ms' ? 1e3 : memoryTotal)));
 
-    // ...
     value = Math.round(mode == 'mem' ? percent : value);
     percent = mode == 'mem' ? percent / 2 : percent;
 
@@ -308,12 +297,12 @@
     var length,
         padding,
         me = this,
+        tmp = { },
         data = cache.data,
-        element = createElement('div'),
+        element = document.createElement('div'),
         fps = extend({ }, me.fps),
         ms = extend({ }, me.ms),
         mem = extend({ }, me.mem),
-        tmp = { },
         uid = 'xstats' + cache.counter++;
 
     // apply options
