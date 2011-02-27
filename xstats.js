@@ -152,7 +152,6 @@
     return function() {
       if (!me.locked) {
         var nodes,
-            uid = me.uid,
             mode = me.mode == 'fps' ? 'ms' : me.mode == 'ms' ? (memoryNS ? 'mem' : 'fps') : 'fps',
             element = me.element,
             nodes = me.canvas.childNodes,
@@ -167,10 +166,10 @@
           entry = data[pad - length];
           setBar(me, nodes[length], entry && entry.percent);
         }
-        removeClass(element, uid + '-fps');
-        removeClass(element, uid + '-ms');
-        removeClass(element, uid + '-mem');
-        addClass(element, uid + '-' + mode);
+        removeClass(element, 'fps');
+        removeClass(element, 'ms');
+        removeClass(element, 'mem');
+        addClass(element, mode);
       }
     };
   }
@@ -185,8 +184,10 @@
     var data = cache.data[mode],
         percent = Math.min(100, 100 * (value / (mode == 'fps' ? 120 : mode == 'ms' ? 1e3 : memoryTotal)));
 
+    // ...
     value = Math.round(mode == 'mem' ? percent : value);
     percent = mode == 'mem' ? percent / 2 : percent;
+
     data.min = Math.min(data.min != null ? data.min : value, value);
     data.max = Math.max(data.max != null ? data.max : value, value);
     data.length = [data.length, data.unshift({ 'value': value, 'percent': percent })][0];
@@ -205,7 +206,7 @@
         portion = (base / 100) * percent,
         value = percent != null ? (base - portion).toFixed(2) : height;
 
-    node.style.borderTopWidth = value + 'px';
+    node.style.height = value + 'px';
   }
 
   /**
@@ -323,7 +324,7 @@
     // compute dimensions
     padding = me.padding * 2;
     length = me.innerWidth = me.width - padding;
-    me.innerHeight = (tmp.miHeight = me.height - padding) - 14;
+    me.innerHeight = me.height - padding - 14;
 
     // increase shared data if needed
     if (data.ms.length < length) {
@@ -334,21 +335,25 @@
     // create stylesheet (remember IE has a 32 stylesheet limit)
     createStyleSheet(
       interpolate(
-        '.#{uid} p{margin:0 0 1px 0}' +
-        '.#{uid}-fg{position:absolute}' +
-        '.#{uid}-bg{opacity:.5;float:right}' +
-        '.#{uid} ul{margin:0;padding:0;list-style:none;overflow:hidden;height:#{innerHeight}px}' +
-        '.#{uid},.#{uid}-fg,.#{uid}-bg{width:#{width}px;height:#{height}px}' +
-        '.#{uid} li{float:left;width:1px;height:100%;border-top-width:#{innerHeight}px;border-top-style:solid}' +
-        '.#{uid}-mi{position:absolute;overflow:hidden;margin:#{padding}px;width:#{innerWidth}px;height:#{miHeight}px}' +
-        '.#{uid}{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none;font-family:sans-serif;font-size:.6em}', extend(tmp, me)) +
-      interpolate('.#{uid}-fps{color:#{fg}}.#{uid}-fps .#{uid}-bg{background:#{bg}}.#{uid}-fps li{background:#{fg};border-color:#{bg}}', extend(tmp, fps)) +
-      interpolate('.#{uid}-ms{color:#{fg}}.#{uid}-ms .#{uid}-bg{background:#{bg}}.#{uid}-ms li{background:#{fg};border-color:#{bg}}', extend(tmp, ms)) +
-      interpolate('.#{uid}-mem{color:#{fg}}.#{uid}-mem .#{uid}-bg{background:#{bg}}.#{uid}-mem li{background:#{fg};border-color:#{bg}}', extend(tmp, mem)));
+        '.#{uid},.#{uid} .bg,.#{uid} .fg{width:#{width}px;height:#{height}px}' +
+        '.#{uid} .mi{margin:#{padding}px;width:#{innerWidth}px}' +
+        '.#{uid} ul{height:#{innerHeight}px;width:#{innerWidth}px}', extend(tmp, me)) +
+      interpolate(
+        '.#{uid}.fps{color:#{fg}}' +
+        '.#{uid}.fps ul{background:#{fg}}' +
+        '.#{uid}.fps .bg,.#{uid}.fps li{background:#{bg}}', extend(tmp, fps)) +
+      interpolate(
+        '.#{uid}.ms{color:#{fg}}' +
+        '.#{uid}.ms ul{background:#{fg}}' +
+        '.#{uid}.ms .bg,.#{uid}.ms li{background:#{bg}}', extend(tmp, ms)) +
+      interpolate(
+        '.#{uid}.mem{color:#{fg}}' +
+        '.#{uid}.mem ul{background:#{fg}}' +
+        '.#{uid}.mem .bg,.#{uid}.mem li{background:#{bg}}', extend(tmp, mem)));
 
     // build interface
-    element.className = interpolate('xstats #{uid} #{uid}-' + me.mode, me);
-    element.innerHTML = interpolate('<div class=#{uid}-bg></div><div class=#{uid}-mi><p>&nbsp;</p><ul>' + repeat('<li></li>', length) + '</ul></div><div class=#{uid}-fg></div>', me);
+    element.className = 'xstats ' + uid + ' ' + me.mode;
+    element.innerHTML = '<div class=bg></div><div class=mi><p>&nbsp;</p><ul>' + repeat('<li></li>', length) + '</ul></div><div class=fg></div>';
     addListener(element, 'click', createSwapMode(me));
 
     // grab elements
@@ -481,6 +486,15 @@
 
   // ensure we can read memory info
   memoryNS = memoryTotal && memoryNS;
+
+  // create shared stylesheet
+  createStyleSheet(
+    '.xstats div{position:absolute;overflow:hidden}' +
+    '.xstats p{margin:0 0 1px 0;font-family:sans-serif;font-size:.6em;white-space:nowrap}' +
+    '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
+    '.xstats li{float:left;width:2px;margin-left:-1px;height:100%}' +
+    '.xstats .bg{opacity:.5;filter:alpha(opacity=50)}' +
+    '.xstats{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}');
 
   // start recording
   (function() {
