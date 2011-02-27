@@ -108,11 +108,11 @@
           bunny.speedY -= random() * 12;
         }
       }
-      else if (bunny.y < minY){
+      else if (bunny.y < minY) {
         bunny.speedY = 0;
         bunny.y = minY;
       }
-      ctx.drawImage(bunnyImg,  bunny.x, bunny.y);
+      ctx.drawImage(bunnyImg, bunny.x, bunny.y);
     }
   }
 
@@ -206,7 +206,7 @@
       body.appendChild(canvas);
 
       // append button below canvas
-      button.innerHTML = 'Moar Bunnies!';
+      button.innerHTML = 'Add Bunnies!';
       body.insertBefore(button, canvas.nextSibling);
       addListener(button, 'click', addBunnies);
 
