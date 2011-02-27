@@ -488,6 +488,6 @@
     '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
     '.xstats li{float:left;width:2px;margin-left:-1px;height:100%}' +
     '.xstats .bg{opacity:.5;filter:alpha(opacity=50)}' +
-    '.xstats{cursor:pointer}');
+    '.xstats{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}');
 
 }(this, this.document));
