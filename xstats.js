@@ -49,6 +49,28 @@
   }
 
   /**
+   * Appends CSS text to a planted style sheet.
+   * @private
+   * @param {String} cssText The CSS text.
+   */
+  function appendCSS(cssText) {
+    var node,
+        prop = 'cssText',
+        sheet = cache.sheet;
+    if (!sheet){
+      node = document.getElementsByTagName('head')[0];
+      sheet = cache.sheet = createElement('style');
+      sheet.type = 'text/css';
+      node.insertBefore(sheet, node.firstChild);
+    }
+    if (!(node = 'styleSheet' in sheet && sheet.styleSheet)) {
+      prop = 'nodeValue';
+      node = sheet.firstChild || sheet.appendChild(document.createTextNode(''));
+    }
+    node[prop] += cssText;
+  }
+
+  /**
    * Shortcut for document.createElement().
    * @private
    * @param {String} tag The tag name of the element to create.
@@ -56,25 +78,6 @@
    */
   function createElement(tagName) {
     return document.createElement(tagName);
-  }
-
-  /**
-   * Creates and appends a style sheet to the document.
-   * @private
-   * @param {String} cssText The css text of the style sheet.
-   */
-  function createStyleSheet(cssText) {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = createElement('style'),
-        rules = document.createTextNode(cssText);
-
-    style.type = 'text/css';
-    if (typeof style.styleSheet != 'undefined') {
-      style.styleSheet.cssText = rules.nodeValue;
-    } else {
-      style.appendChild(rules);
-    }
-    head.appendChild(style);
   }
 
   /**
@@ -332,8 +335,8 @@
       data.ms.length =
       data.mem.length = length;
     }
-    // create stylesheet (remember IE has a 32 stylesheet limit)
-    createStyleSheet(
+    // append customized css
+    appendCSS(
       interpolate(
         '.#{uid},.#{uid} .bg,.#{uid} .fg{width:#{width}px;height:#{height}px}' +
         '.#{uid} .mi{margin:#{padding}px;width:#{innerWidth}px}' +
@@ -487,8 +490,8 @@
   // ensure we can read memory info
   memoryNS = memoryTotal && memoryNS;
 
-  // create shared stylesheet
-  createStyleSheet(
+  // shared css
+  appendCSS(
     '.xstats div{position:absolute;overflow:hidden}' +
     '.xstats p{margin:0 0 1px 0;font-family:sans-serif;font-size:.6em;white-space:nowrap}' +
     '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
@@ -498,16 +501,13 @@
 
   // start recording
   (function() {
-    var reqFrame = window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.oRequestAnimationFrame ||
-      window.msRequestAnimationFrame;
+    var callback = function() { update(); reqFrame(callback); },
+        reqFrame = window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame;
 
-    function callback() {
-      update();
-      reqFrame(callback);
-    }
     if (reqFrame) {
       reqFrame(callback);
     } else {
