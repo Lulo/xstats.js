@@ -30,7 +30,7 @@
 <!-- div -->
 ## `xStats`
 <!-- div -->
-### <a id="xStats" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L295" title="View in source">`xStats([options={}])`</a>
+### <a id="xStats" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L300" title="View in source">`xStats([options={}])`</a>
 xStats constructor.
 [&#9650;][1]
 
@@ -67,7 +67,7 @@ xStats constructor.
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats.subclasses" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L375" title="View in source">`xStats.subclasses`</a>
+### <a id="xStats.subclasses" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L380" title="View in source">`xStats.subclasses`</a>
 *(Array)*: An array of xStat instances.
 [&#9650;][1]
 <!-- /div -->
@@ -77,85 +77,85 @@ xStats constructor.
 <!-- div -->
 ## `xStats.prototype`
 <!-- div -->
-### <a id="xStats:height" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L384" title="View in source">`xStats#height`</a>
+### <a id="xStats:height" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L389" title="View in source">`xStats#height`</a>
 *(Number)*: The height of the chart *(px)*.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:locked" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L405" title="View in source">`xStats#locked`</a>
+### <a id="xStats:locked" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L410" title="View in source">`xStats#locked`</a>
 *(Boolean)*: A flag to indicate if the chart is locked at its current display mode.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:mode" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L412" title="View in source">`xStats#mode`</a>
+### <a id="xStats:mode" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L417" title="View in source">`xStats#mode`</a>
 *(String)*: The charts current display mode *(fps, ms, mem)*.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:padding" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L398" title="View in source">`xStats#padding`</a>
+### <a id="xStats:padding" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L403" title="View in source">`xStats#padding`</a>
 *(Number)*: The inner padding of the chart that doesn't affect dimensions *(px)*.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:width" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L391" title="View in source">`xStats#width`</a>
+### <a id="xStats:width" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L396" title="View in source">`xStats#width`</a>
 *(Number)*: The width of the chart *(px)*.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:fps" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L419" title="View in source">`xStats#fps`</a>
+### <a id="xStats:fps" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L424" title="View in source">`xStats#fps`</a>
 *(Object)*: The "frames per second" display mode options object.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:fps.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L426" title="View in source">`xStats#fps.bg`</a>
+### <a id="xStats:fps.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L431" title="View in source">`xStats#fps.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:fps.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L433" title="View in source">`xStats#fps.fg`</a>
+### <a id="xStats:fps.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L438" title="View in source">`xStats#fps.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:mem" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L463" title="View in source">`xStats#mem`</a>
+### <a id="xStats:mem" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L468" title="View in source">`xStats#mem`</a>
 *(Object)*: The "memory" display mode options object.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:mem.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L470" title="View in source">`xStats#mem.bg`</a>
+### <a id="xStats:mem.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L475" title="View in source">`xStats#mem.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:mem.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L477" title="View in source">`xStats#mem.fg`</a>
+### <a id="xStats:mem.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L482" title="View in source">`xStats#mem.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:ms" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L441" title="View in source">`xStats#ms`</a>
+### <a id="xStats:ms" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L446" title="View in source">`xStats#ms`</a>
 *(Object)*: The "millisecond" display mode options object.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:ms.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L448" title="View in source">`xStats#ms.bg`</a>
+### <a id="xStats:ms.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L453" title="View in source">`xStats#ms.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
 <!-- /div -->
 
 <!-- div -->
-### <a id="xStats:ms.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L455" title="View in source">`xStats#ms.fg`</a>
+### <a id="xStats:ms.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L460" title="View in source">`xStats#ms.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
 <!-- /div -->

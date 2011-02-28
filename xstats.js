@@ -19,7 +19,12 @@
     'lastSecond': null,
     'lastTime': null,
     'data': { 'fps': [], 'ms': [], 'mem': [] }
-  };
+  },
+
+  /** Math shortcuts */
+  max   = Math.max,
+  min   = Math.min,
+  round = Math.round;
 
   /*--------------------------------------------------------------------------*/
 
@@ -174,13 +179,13 @@
    */
   function record(mode, value) {
     var data = cache.data[mode],
-        percent = Math.min(100, 100 * (value / (mode == 'fps' ? 80 : mode == 'ms' ? 1e3 : memoryTotal)));
+        percent = min(100, 100 * (value / (mode == 'fps' ? 80 : mode == 'ms' ? 1e3 : memoryTotal)));
 
-    value = Math.round(mode == 'mem' ? percent : value);
+    value = round(mode == 'mem' ? percent : value);
     percent = mode == 'mem' ? percent / 1.34 : percent;
 
-    data.min = Math.min(data.min != null ? data.min : value, value);
-    data.max = Math.max(data.max != null ? data.max : value, value);
+    data.min = min(data.min != null ? data.min : value, value);
+    data.max = max(data.max != null ? data.max : value, value);
     data.length = [data.length, data.unshift({ 'value': value, 'percent': percent })][0];
   }
 
@@ -319,7 +324,7 @@
     width = me.width - padding;
 
     // sweet spot for font-size/height
-    tmp.titleHeight = Math.round(height * 0.28);
+    tmp.titleHeight = round(height * 0.28);
     tmp.fontSize = (tmp.titleHeight / 22.2).toFixed(2);
     tmp.innerWidth = width;
     tmp.innerHeight = height - tmp.titleHeight;
