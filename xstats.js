@@ -174,10 +174,10 @@
    */
   function record(mode, value) {
     var data = cache.data[mode],
-        percent = Math.min(100, 100 * (value / (mode == 'fps' ? 120 : mode == 'ms' ? 1e3 : memoryTotal)));
+        percent = Math.min(100, 100 * (value / (mode == 'fps' ? 80 : mode == 'ms' ? 1e3 : memoryTotal)));
 
     value = Math.round(mode == 'mem' ? percent : value);
-    percent = mode == 'mem' ? percent / 2 : percent;
+    percent = mode == 'mem' ? percent / 1.34 : percent;
 
     data.min = Math.min(data.min != null ? data.min : value, value);
     data.max = Math.max(data.max != null ? data.max : value, value);
@@ -185,19 +185,19 @@
   }
 
   /**
-   * Sets the LI element's border top width based on the given value.
+   * Sets the LI element's height based on the given value.
    * @private
    * @param {Object} me The xStats instance.
    * @param {Object} node The LI element.
    * @param {Number} percent The bar height as a percentage.
    */
   function setBar(me, node, percent) {
-    var height = me.innerHeight,
-        base = (height / 6) * 5,
+    var height = 100,
+        base = (height / 16) * 15,
         portion = (base / 100) * percent,
         value = percent != null ? (base - portion).toFixed(2) : height;
 
-    node.style.height = value + 'px';
+    node.style.height = value + '%';
   }
 
   /**
@@ -210,7 +210,7 @@
     var mode = me.mode,
         data = cache.data[mode];
 
-    me.title.innerHTML = value == null ? '&nbsp;' :
+    me.title.nodeValue = value == null ? ' ' :
       value + mode.toUpperCase() + ' (' + data.min + '-' + data.max + ')';
   }
 
@@ -318,12 +318,11 @@
     height = me.height - padding;
     width = me.width - padding;
 
-    // sweet spot for height/font-size
+    // sweet spot for font-size/height
     tmp.titleHeight = Math.round(height * 0.28);
     tmp.fontSize = (tmp.titleHeight / 22.2).toFixed(2);
-
-    me.innerWidth = width;
-    me.innerHeight = height - tmp.titleHeight;
+    tmp.innerWidth = width;
+    tmp.innerHeight = height - tmp.titleHeight;
 
     // increase shared data if needed
     if (data.ms.length < width) {
@@ -359,7 +358,7 @@
     // grab elements
     me.element = element;
     me.canvas = element.getElementsByTagName('ul')[0];
-    me.title = element.getElementsByTagName('p')[0];
+    me.title = element.getElementsByTagName('p')[0].firstChild;
 
     // keep track of instances to animate
     xStats.subclasses.push(me);
