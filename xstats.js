@@ -293,8 +293,9 @@
    * document.body.appendChild(stats.element);
    */
   function xStats(options) {
-    var length,
+    var height,
         padding,
+        width,
         me = this,
         tmp = { },
         data = cache.data,
@@ -314,20 +315,28 @@
 
     // compute dimensions
     padding = me.padding * 2;
-    length = me.innerWidth = me.width - padding;
-    me.innerHeight = me.height - padding - 14;
+    height = me.height - padding;
+    width = me.width - padding;
+
+    // sweet spot for height/font-size
+    tmp.titleHeight = Math.round(height * 0.28);
+    tmp.fontSize = (tmp.titleHeight / 22.2).toFixed(2);
+
+    me.innerWidth = width;
+    me.innerHeight = height - tmp.titleHeight;
 
     // increase shared data if needed
-    if (data.ms.length < length) {
+    if (data.ms.length < width) {
       data.fps.length =
       data.ms.length =
-      data.mem.length = length;
+      data.mem.length = width;
     }
     // append customized css
     appendCSS(
       interpolate(
         '.#{uid},.#{uid} .bg,.#{uid} .fg{width:#{width}px;height:#{height}px}' +
         '.#{uid} .mi{margin:#{padding}px;width:#{innerWidth}px}' +
+        '.#{uid} p{font-size:#{fontSize}em;height:#{titleHeight}px;width:#{innerWidth}px}' +
         '.#{uid} ul{height:#{innerHeight}px;width:#{innerWidth}px}', extend(tmp, me)) +
       interpolate(
         '.#{uid}.fps{color:#{fg}}' +
@@ -344,7 +353,7 @@
 
     // build interface
     element.className = 'xstats ' + uid + ' ' + me.mode;
-    element.innerHTML = '<div class=bg></div><div class=mi><p>&nbsp;</p><ul>' + repeat('<li></li>', length) + '</ul></div><div class=fg></div>';
+    element.innerHTML = '<div class=bg></div><div class=mi><p>&nbsp;</p><ul>' + repeat('<li></li>', width) + '</ul></div><div class=fg></div>';
     addListener(element, 'click', createSwapMode(me));
 
     // grab elements
@@ -484,7 +493,7 @@
   // shared css
   appendCSS(
     '.xstats div{position:absolute;overflow:hidden}' +
-    '.xstats p{margin:0 0 1px 0;font-family:sans-serif;font-size:.6em;white-space:nowrap;-webkit-text-size-adjust:100%}' +
+    '.xstats p{margin:0;overflow:hidden;font-family:sans-serif;-webkit-text-size-adjust:100%}' +
     '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
     '.xstats li{float:left;width:2px;margin-left:-1px;height:100%}' +
     '.xstats .bg{opacity:.5;filter:alpha(opacity=50)}' +
