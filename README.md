@@ -17,7 +17,7 @@ The documentation for xStats.js can be viewed here: [/docs/xstats.md](/jdalton/x
 
 ## Usage
 
-    var stats = new Stats;
+    var stats = new xStats;
     document.body.appendChild(stats.element);
 
 ## Enable MEM
