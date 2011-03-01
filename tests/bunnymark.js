@@ -39,6 +39,9 @@
   /** shortcut for Math.random */
   random = Math.random,
 
+  /** shortcut for Math.round */
+  round = Math.round,
+
   /** height of the canvas element */
   height = 480,
 
@@ -83,11 +86,13 @@
   function render() {
     var bunny,
         bunnies = Bunny.bunnies,
+        text = bunnies.length  + ' bunnies hopping through the forest',
         i = -1;
 
     ctx.fillStyle = fillStyle;
     ctx.fillRect(0, 0, width, height);
 
+    // render bunnies
     while (bunny = bunnies[++i]) {
       bunny.x += bunny.speedX;
       bunny.y += bunny.speedY;
@@ -112,7 +117,16 @@
         bunny.speedY = 0;
         bunny.y = minY;
       }
-      ctx.drawImage(bunnyImg, bunny.x, bunny.y);
+      ctx.drawImage(bunnyImg, round(bunny.x), round(bunny.y));
+    }
+    // display bunny count
+    if (ctx.fillText && ctx.strokeText) {
+      ctx.strokeStyle = '#000';
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 8pt sans-serif';
+      ctx.lineWidth = 2;
+	    ctx.strokeText(text, 10, 18);
+	    ctx.fillText(text, 10, 18);
     }
   }
 
@@ -212,7 +226,7 @@
 
       // cache fillStyle and load bunnies
       fillStyle = ctx.createPattern(bgImg, 'repeat');
-      addBunnies(50);
+      addBunnies(10);
 
       // start animating
       if (reqFrame) {
