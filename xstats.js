@@ -18,13 +18,130 @@
     'frames': 0,
     'lastSecond': null,
     'lastTime': null,
-    'data': { 'fps': [], 'ms': [], 'mem': [] }
+    'data': { 'fps': new Data, 'ms': new Data, 'mem': new Data }
   },
 
   /** Math shortcuts */
   max   = Math.max,
   min   = Math.min,
   round = Math.round;
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Data object constructor.
+   * @private
+   * @constructor
+   */
+  function Data() {
+    // add own properties to avoid lookups on the Array.prototype
+    return extend([], { 'max': null, 'min': null });
+  }
+
+  /**
+   * xStats constructor.
+   * @constructor
+   * @param {Object} [options={}] Options object.
+   * @example
+   *
+   * // basic usage
+   * var stats = new xStats;
+   *
+   * // or using options
+   * var stats = new xStats({
+   *   'mode': 'ms',
+   *   'height': 130,
+   *   'width':200,
+   *   'padding':10,
+   *   'locked': false,
+   *   'fps': {
+   *     'bg': '#330000',
+   *     'fg': '#cc6600'
+   *   },
+   *   'ms': {
+   *     'bg': '#000033',
+   *     'fg': '#3366ff'
+   *   },
+   *   'mem': {
+   *     'bg': '#000033',
+   *     'fg': '#660099'
+   *   }
+   * });
+   *
+   * // insert into document
+   * document.body.appendChild(stats.element);
+   */
+  function xStats(options) {
+    var height,
+        padding,
+        width,
+        me = this,
+        tmp = { },
+        data = cache.data,
+        element = document.createElement('div'),
+        fps = extend({ }, me.fps),
+        ms = extend({ }, me.ms),
+        mem = extend({ }, me.mem),
+        uid = 'xstats' + cache.counter++;
+
+    // apply options
+    extend(me, options || (options = { }));
+    me.uid = uid;
+
+    fps = me.fps = extend(fps, options.fps);
+    ms = me.ms = extend(ms, options.ms);
+    mem = me.mem = extend(mem, options.mem);
+
+    // compute dimensions
+    padding = me.padding * 2;
+    height = me.height - padding;
+    width = me.width - padding;
+
+    // sweet spot for font-size/height
+    tmp.titleHeight = round(height * 0.28);
+    tmp.fontSize = (tmp.titleHeight / 22.2).toFixed(2);
+    tmp.innerWidth = width;
+    tmp.innerHeight = height - tmp.titleHeight;
+
+    // increase shared data if needed
+    if (data.ms.length < width) {
+      data.fps.length =
+      data.ms.length =
+      data.mem.length = width;
+    }
+    // append customized css
+    appendCSS(
+      interpolate(
+        '.#{uid},.#{uid} .bg,.#{uid} .fg{width:#{width}px;height:#{height}px}' +
+        '.#{uid} .mi{margin:#{padding}px;width:#{innerWidth}px}' +
+        '.#{uid} p{font-size:#{fontSize}em;height:#{titleHeight}px;width:#{innerWidth}px}' +
+        '.#{uid} ul{height:#{innerHeight}px;width:#{innerWidth}px}', extend(tmp, me)) +
+      interpolate(
+        '.#{uid}.fps{color:#{fg}}' +
+        '.#{uid}.fps ul{background:#{fg}}' +
+        '.#{uid}.fps .bg,.#{uid}.fps li{background:#{bg}}', extend(tmp, fps)) +
+      interpolate(
+        '.#{uid}.ms{color:#{fg}}' +
+        '.#{uid}.ms ul{background:#{fg}}' +
+        '.#{uid}.ms .bg,.#{uid}.ms li{background:#{bg}}', extend(tmp, ms)) +
+      interpolate(
+        '.#{uid}.mem{color:#{fg}}' +
+        '.#{uid}.mem ul{background:#{fg}}' +
+        '.#{uid}.mem .bg,.#{uid}.mem li{background:#{bg}}', extend(tmp, mem)));
+
+    // build interface
+    element.className = 'xstats ' + uid + ' ' + me.mode;
+    element.innerHTML = '<div class=bg></div><div class=mi><p>&nbsp;</p><ul>' + repeat('<li></li>', width) + '</ul></div><div class=fg></div>';
+    addListener(element, 'click', createSwapMode(me));
+
+    // grab elements
+    me.element = element;
+    me.canvas = element.getElementsByTagName('ul')[0];
+    me.title = element.getElementsByTagName('p')[0].firstChild;
+
+    // keep track of instances to animate
+    xStats.subclasses.push(me);
+  }
 
   /*--------------------------------------------------------------------------*/
 
@@ -260,113 +377,6 @@
       cache.lastSecond = now;
     }
     cache.lastTime = now;
-  }
-
-  /*--------------------------------------------------------------------------*/
-
-  /**
-   * xStats constructor.
-   * @constructor
-   * @param {Object} [options={}] Options object.
-   * @example
-   *
-   * // basic usage
-   * var stats = new xStats;
-   *
-   * // or using options
-   * var stats = new xStats({
-   *   'mode': 'ms',
-   *   'height': 130,
-   *   'width':200,
-   *   'padding':10,
-   *   'locked': false,
-   *   'fps': {
-   *     'bg': '#330000',
-   *     'fg': '#cc6600'
-   *   },
-   *   'ms': {
-   *     'bg': '#000033',
-   *     'fg': '#3366ff'
-   *   },
-   *   'mem': {
-   *     'bg': '#000033',
-   *     'fg': '#660099'
-   *   }
-   * });
-   *
-   * // insert into document
-   * document.body.appendChild(stats.element);
-   */
-  function xStats(options) {
-    var height,
-        padding,
-        width,
-        me = this,
-        tmp = { },
-        data = cache.data,
-        element = document.createElement('div'),
-        fps = extend({ }, me.fps),
-        ms = extend({ }, me.ms),
-        mem = extend({ }, me.mem),
-        uid = 'xstats' + cache.counter++;
-
-    // apply options
-    extend(me, options || (options = { }));
-    me.uid = uid;
-
-    fps = me.fps = extend(fps, options.fps);
-    ms = me.ms = extend(ms, options.ms);
-    mem = me.mem = extend(mem, options.mem);
-
-    // compute dimensions
-    padding = me.padding * 2;
-    height = me.height - padding;
-    width = me.width - padding;
-
-    // sweet spot for font-size/height
-    tmp.titleHeight = round(height * 0.28);
-    tmp.fontSize = (tmp.titleHeight / 22.2).toFixed(2);
-    tmp.innerWidth = width;
-    tmp.innerHeight = height - tmp.titleHeight;
-
-    // increase shared data if needed
-    if (data.ms.length < width) {
-      data.fps.length =
-      data.ms.length =
-      data.mem.length = width;
-    }
-    // append customized css
-    appendCSS(
-      interpolate(
-        '.#{uid},.#{uid} .bg,.#{uid} .fg{width:#{width}px;height:#{height}px}' +
-        '.#{uid} .mi{margin:#{padding}px;width:#{innerWidth}px}' +
-        '.#{uid} p{font-size:#{fontSize}em;height:#{titleHeight}px;width:#{innerWidth}px}' +
-        '.#{uid} ul{height:#{innerHeight}px;width:#{innerWidth}px}', extend(tmp, me)) +
-      interpolate(
-        '.#{uid}.fps{color:#{fg}}' +
-        '.#{uid}.fps ul{background:#{fg}}' +
-        '.#{uid}.fps .bg,.#{uid}.fps li{background:#{bg}}', extend(tmp, fps)) +
-      interpolate(
-        '.#{uid}.ms{color:#{fg}}' +
-        '.#{uid}.ms ul{background:#{fg}}' +
-        '.#{uid}.ms .bg,.#{uid}.ms li{background:#{bg}}', extend(tmp, ms)) +
-      interpolate(
-        '.#{uid}.mem{color:#{fg}}' +
-        '.#{uid}.mem ul{background:#{fg}}' +
-        '.#{uid}.mem .bg,.#{uid}.mem li{background:#{bg}}', extend(tmp, mem)));
-
-    // build interface
-    element.className = 'xstats ' + uid + ' ' + me.mode;
-    element.innerHTML = '<div class=bg></div><div class=mi><p>&nbsp;</p><ul>' + repeat('<li></li>', width) + '</ul></div><div class=fg></div>';
-    addListener(element, 'click', createSwapMode(me));
-
-    // grab elements
-    me.element = element;
-    me.canvas = element.getElementsByTagName('ul')[0];
-    me.title = element.getElementsByTagName('p')[0].firstChild;
-
-    // keep track of instances to animate
-    xStats.subclasses.push(me);
   }
 
   /*--------------------------------------------------------------------------*/
