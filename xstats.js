@@ -9,9 +9,6 @@
   /** Detect memory object */
   var memoryNS = (memoryNS = window.webkitPerformance || window.console) && memoryNS.memory && memoryNS,
 
-  /** Detect available memory */
-  memoryTotal = memoryNS && memoryNS.memory.totalJSHeapSize,
-
   /** Internal cached used by various methods */
   cache = {
     'counter': 1,
@@ -22,6 +19,7 @@
   },
 
   /** Math shortcuts */
+  floor = Math.floor,
   max   = Math.max,
   min   = Math.min,
   round = Math.round;
@@ -296,14 +294,14 @@
    */
   function record(mode, value) {
     var data = cache.data[mode],
-        percent = min(100, 100 * (value / (mode == 'fps' ? 80 : mode == 'ms' ? 1e3 : memoryTotal)));
+        percent = min(100, 100 * (value / (mode == 'fps' ? 80 : mode == 'ms' ? 1e3 : 128)));
 
-    value = round(mode == 'mem' ? percent : value);
-    percent = mode == 'mem' ? percent / 1.34 : percent;
+    value = mode == 'mem' ? value.toFixed(2) : round(value);
+    data.length = [data.length, data.unshift({ 'value': value, 'percent': percent })][0];
 
+    value = floor(value);
     data.min = min(data.min != null ? data.min : value, value);
     data.max = max(data.max != null ? data.max : value, value);
-    data.length = [data.length, data.unshift({ 'value': value, 'percent': percent })][0];
   }
 
   /**
@@ -330,10 +328,11 @@
    */
   function setTitle(me, value) {
     var mode = me.mode,
+        unit = mode == 'mem' ? 'MB' : mode.toUpperCase(),
         data = cache.data[mode];
 
     me.title.nodeValue = value == null ? ' ' :
-      value + mode.toUpperCase() + ' (' + data.min + '-' + data.max + ')';
+      value + unit + ' (' + data.min + '-' + data.max + ')';
   }
 
   /**
@@ -358,7 +357,7 @@
       record('ms', now - cache.lastTime);
       if (secValue > 999) {
         record('fps', 1e3 / (secValue / cache.frames));
-        memoryNS && record('mem', memoryNS.memory.usedJSHeapSize);
+        memoryNS && record('mem', memoryNS.memory.usedJSHeapSize / 1048576);
         cache.frames = 0;
         cache.lastSecond = now;
       }
@@ -499,7 +498,7 @@
   window.xStats = xStats;
 
   // ensure we can read memory info
-  memoryNS = memoryTotal && memoryNS;
+  memoryNS = memoryNS && !!memoryNS.memory.usedJSHeapSize && memoryNS;
 
   // start recording
   setInterval(update, 1e3/60);

@@ -3,9 +3,9 @@
 
 xStats provides simple charts to help monitor your code performance.
 
-* **FPS** Frames rendered in the last second. The higher the number the better.
+* **FPS** Frames rendered per second. The higher the number the better.
 * **MS** Milliseconds needed to render a frame. The lower the number the better.
-* **MEM** Percentage of memory allocated. Make sure it doesn't keep incrementing. (WebKit-based browsers only)
+* **MEM** Megabytes of memory used. Make sure it doesn't keep incrementing. *(WebKit-based browsers only)*
 
 ## Screenshots
 
@@ -28,5 +28,5 @@ The documentation for xStats.js can be viewed here: [/docs/xstats.md](/jdalton/x
   * MacOS: `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-memory-info`
 
 * **Safari**
-  * MacOS: Open `~/Library/Preferences/com.apple.Safari.plist` file for editing, and 
+  * MacOS: Open `~/Library/Preferences/com.apple.Safari.plist` file for editing, and
     check `WebKitMemoryInfoEnabled` *([screenshot](http://mrdoob.github.com/stats.js/assets/safari_enablemem.png))*
