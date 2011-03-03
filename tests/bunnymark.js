@@ -101,13 +101,7 @@
    * @returns {String} The more readable string representation.
    */
   function formatNumber(number) {
-    var comma = ',',
-        string = String(number),
-        length = string.length,
-        end = /^\d{4,}$/.test(string) ? length % 3 : 0;
-
-    return (end ? string.slice(0, end) + comma : '') +
-      string.slice(end).replace(/(\d{3})(?=\d)/g, '$1' + comma);
+    return String(number).replace(/(?=(?:\d{3})+$)(?!^)/g, ',');
   }
 
   /**
