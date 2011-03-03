@@ -6,14 +6,17 @@
  */
 (function(window, document) {
 
-  /** fill style object of the background image */
-  var fillStyle,
-
-  /** background image object (repeat 0px 0px) */
-  bgImg = new Image,
-
   /** bunny image object */
-  bunnyImg = new Image,
+  var bunnyImage,
+
+  /** background image object */
+  grassImage,
+
+  /** fill style object of the background image */
+  fillStyle,
+
+  /** element used to display the bunny count */
+  status,
 
   /** canvas element */
   canvas = document.createElement('canvas'),
@@ -51,17 +54,29 @@
   /*--------------------------------------------------------------------------*/
 
   /**
-   * Adds bunnies hopping through the forest.
+   * Bunny constructor.
+   * @constructor
+   */
+  function Bunny() {
+    this.speedX = random() * 10;
+    this.speedY = (random() * 10) - 5;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Adds a number of bunnies.
    * @private
    * @param {Number} number The number of bunnies to add.
    */
   function addBunnies(number) {
-    if (typeof number != 'number') {
-      number = 500;
-    }
+    var bunnies = Bunny.bunnies;
+    number = typeof number == 'number' ? number : 200;
     while (number--) {
-      Bunny.bunnies.push(new Bunny);
+      bunnies.push(new Bunny);
     }
+    status.innerHTML = formatNumber(bunnies.length)  +
+      ' bunnies hopping through the forest... (click for more)';
   }
 
   /**
@@ -80,20 +95,35 @@
   }
 
   /**
+   * Converts a number to a more readable comma-separated string representation.
+   * @private
+   * @param {Number} number The number to convert.
+   * @returns {String} The more readable string representation.
+   */
+  function formatNumber(number) {
+    var comma = ',',
+        string = String(number),
+        length = string.length,
+        end = /^\d{4,}$/.test(string) ? length % 3 : 0;
+
+    return (end ? string.slice(0, end) + comma : '') +
+      string.slice(end).replace(/(\d{3})(?=\d)/g, '$1' + comma);
+  }
+
+  /**
    * Renders a single frame of animation.
    * @private
    */
   function render() {
     var bunny,
         bunnies = Bunny.bunnies,
-        text = bunnies.length  + ' bunnies hopping through the forest',
-        i = -1;
+        length = bunnies.length;
 
     ctx.fillStyle = fillStyle;
     ctx.fillRect(0, 0, width, height);
 
-    // render bunnies
-    while (bunny = bunnies[++i]) {
+    while (length--) {
+      bunny = bunnies[length];
       bunny.x += bunny.speedX;
       bunny.y += bunny.speedY;
       bunny.speedY += gravity;
@@ -117,28 +147,8 @@
         bunny.speedY = 0;
         bunny.y = minY;
       }
-      ctx.drawImage(bunnyImg, round(bunny.x), round(bunny.y));
+      ctx.drawImage(bunnyImage, round(bunny.x), round(bunny.y));
     }
-    // display bunny count
-    if (ctx.fillText && ctx.strokeText) {
-      ctx.strokeStyle = '#000';
-      ctx.fillStyle = '#fff';
-      ctx.font = 'bold 8pt sans-serif';
-      ctx.lineWidth = 2;
-	    ctx.strokeText(text, 10, 18);
-	    ctx.fillText(text, 10, 18);
-    }
-  }
-
-  /*--------------------------------------------------------------------------*/
-
-  /**
-   * Bunny constructor.
-   * @constructor
-   */
-  function Bunny() {
-    this.speedX = random() * 10;
-    this.speedY = (random() * 10) - 5;
   }
 
   /*--------------------------------------------------------------------------*/
@@ -189,14 +199,16 @@
 
   // setup canvas
   if (ctx) {
-    bgImg.src = 'data:image/gif;base64,' +
+    grassImage = new Image;
+    grassImage.src = 'data:image/gif;base64,' +
       'R0lGODlhIAAgAJEAADvWYkWlXcnvQAAAACH5BAAAAAAALAAAAAAgACAAAALxjAN5gIIgGHsxiWiSurq7' +
       'wCEZxDGXY2Fjoz5Kcyzbm2an9YJOaz0uO6lMJCaMJjQc0QzGTVOlcUFyuVgJ81FMYDZtSEkU2cY6YIy0' +
       '4F1iwM85JfmWpEKqChkSvrXepA9k0hEXlMG2oaRn9RS3duiB01c4FcVHsZK3JTP1lySos0V5VNHIGLbZ' +
       'kEmBIwNStlI2OVL3+seGUsEVW5K6iYMU6DQUNLQDKQlo6PNlo4cCISIsCSVFZNSEjJk2K4ZKkTXXqirB' +
       '1HiLyySIu+nsGSsbdE7G3HtSaDuODD+KD0iUGaesxRpoPCI1ImcvkzU/HPQUAAA7';
 
-    bunnyImg.src = 'data:image/gif;base64,' +
+    bunnyImage = new Image;
+    bunnyImage.src = 'data:image/gif;base64,' +
       'R0lGODlhGgAlAKIFAOumBYVeA////wAAALiDBPT29gAAAAAAACH5BAEAAAUALAAAAAAaACUAAAPCWLrT' +
       'vcU9SCMBGAw1Mt4VQwikxo0lGFqkYLLperbvgLpqaLcEuMcy24hAbBCHr5XwyGQmdc0o8VlZSo9UytJa' +
       'nOaqR27PK7NcnV9tU4KuOqSkqMYRCdgDcIHU07jbz4AbEn+AYXRahBceTGkQA4QALSUARWWPeJGSJZVB' +
@@ -205,7 +217,7 @@
 
     addListener(window, 'load', function() {
       var body = document.body,
-          button = document.createElement('button'),
+          container = document.createElement('div'),
           callback = function() { render(); reqFrame(callback); },
           reqFrame = window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -213,20 +225,27 @@
             window.oRequestAnimationFrame ||
             window.msRequestAnimationFrame;
 
-      // append canvas
-      canvas.id = 'bunnymark';
-      canvas.width = width
+      container.id = 'bunnymark';
+      container.style.cssText =
+        'height:' + height + 'px;width:' + width + 'px;' +
+        'cursor:pointer;font-family:sans-serif;font-size:.6em;' +
+        '-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;' +
+        '-o-user-select:none;user-select:none';
+
+      canvas.width = width;
       canvas.height = height;
-      body.appendChild(canvas);
+      canvas.style.cssText = 'float:left';
 
-      // append button below canvas
-      button.innerHTML = 'Add Bunnies!';
-      body.insertBefore(button, canvas.nextSibling);
-      addListener(button, 'click', addBunnies);
+      status = document.createElement('p');
+      status.style.cssText = 'padding-left:5px;background:#111;color:#fff';
 
-      // cache fillStyle and load bunnies
-      fillStyle = ctx.createPattern(bgImg, 'repeat');
-      addBunnies(10);
+      container.appendChild(canvas);
+      container.appendChild(status);
+      body.appendChild(container);
+      addListener(container, 'click', addBunnies);
+
+      fillStyle = ctx.createPattern(grassImage, 'repeat');
+      addBunnies(5);
 
       // start animating
       if (reqFrame) {
