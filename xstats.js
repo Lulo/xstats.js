@@ -70,7 +70,8 @@
    * document.body.appendChild(stats.element);
    */
   function xStats(options) {
-    var height,
+    var clipped,
+        height,
         padding,
         width,
         me = this,
@@ -85,6 +86,7 @@
     // apply options
     extend(me, options || (options = { }));
     me.uid = uid;
+    extend(tmp, me);
 
     fps = me.fps = extend(fps, options.fps);
     ms = me.ms = extend(ms, options.ms);
@@ -94,12 +96,16 @@
     padding = me.padding * 2;
     height = me.height - padding;
     width = me.width - padding;
+    clipped = max(1, round(width * 0.02));
+    width = floor(width / clipped);
 
-    // sweet spot for font-size/height
+    // sweet spot for font-size, height, and width
     tmp.titleHeight = round(height * 0.28);
+    tmp.barWidth = clipped + 4;
     tmp.fontSize = (tmp.titleHeight / 22.2).toFixed(2);
-    tmp.innerWidth = width;
+    tmp.innerWidth = clipped * width;
     tmp.innerHeight = height - tmp.titleHeight;
+    tmp.padding = round((me.width - tmp.innerWidth) / 2);
 
     // increase shared data if needed
     if (data.ms.length < width) {
@@ -113,7 +119,8 @@
         '.#{uid},.#{uid} .bg,.#{uid} .fg{width:#{width}px;height:#{height}px}' +
         '.#{uid} .mi{margin:#{padding}px;width:#{innerWidth}px}' +
         '.#{uid} p{font-size:#{fontSize}em;height:#{titleHeight}px;width:#{innerWidth}px}' +
-        '.#{uid} ul{height:#{innerHeight}px;width:#{innerWidth}px}', extend(tmp, me)) +
+        '.#{uid} ul{height:#{innerHeight}px;width:#{innerWidth}px}' +
+        '.#{uid} li{width:#{barWidth}px}', tmp) +
       interpolate(
         '.#{uid}.fps{color:#{fg}}' +
         '.#{uid}.fps ul{background:#{fg}}' +
@@ -508,7 +515,7 @@
     '.xstats div{position:absolute;overflow:hidden}' +
     '.xstats p{margin:0;overflow:hidden;font-family:sans-serif;-webkit-text-size-adjust:100%}' +
     '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
-    '.xstats li{float:left;width:2px;margin-left:-1px;height:100%}' +
+    '.xstats li{float:left;height:100%;margin-left:-4px}' +
     '.xstats .bg{opacity:.5;filter:alpha(opacity=50)}' +
     '.xstats{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}');
 
