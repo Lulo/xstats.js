@@ -376,7 +376,7 @@
         if (entry && (mode == 'ms' || !cache.frames)) {
           canvas = me.canvas;
           setTitle(me, entry.value);
-          setBar(me, canvas.appendChild(canvas.firstChild), entry.percent);
+          setBar(me, canvas.insertBefore(canvas.lastChild, canvas.firstChild), entry.percent);
         }
       }
     } else {
@@ -515,7 +515,7 @@
     '.xstats div{position:absolute;overflow:hidden}' +
     '.xstats p{margin:0;overflow:hidden;font-family:sans-serif;-webkit-text-size-adjust:100%}' +
     '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
-    '.xstats li{float:left;height:100%;margin-left:-4px}' +
+    '.xstats li{float:right;height:100%;margin-left:-4px}' +
     '.xstats .bg{opacity:.5;filter:alpha(opacity=50)}' +
     '.xstats{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}');
 
