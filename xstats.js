@@ -7,7 +7,8 @@
 (function(window, document) {
 
   /** Detect memory object */
-  var memoryNS = (memoryNS = window.webkitPerformance || window.console) && memoryNS.memory && memoryNS,
+  var memoryNS = (memoryNS = window.performance || window.webkitPerformance || window.console) &&
+    memoryNS.memory && memoryNS,
 
   /** Internal cached used by various methods */
   cache = {
