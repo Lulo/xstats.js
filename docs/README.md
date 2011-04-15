@@ -1,12 +1,19 @@
 # xStats.js API documentation
 
 <!-- div -->
+
+
 <!-- div -->
+
 ## `xStats`
 * [`xStats`](#xStats)
 * [`xStats.subclasses`](#xStats.subclasses)
+
 <!-- /div -->
+
+
 <!-- div -->
+
 ## `xStats.prototype`
 * [`xStats#height`](#xStats:height)
 * [`xStats#locked`](#xStats:locked)
@@ -22,14 +29,22 @@
 * [`xStats#ms`](#xStats:ms)
 * [`xStats#ms.bg`](#xStats:ms.bg)
 * [`xStats#ms.fg`](#xStats:ms.fg)
+
 <!-- /div -->
+
+
 <!-- /div -->
 
 
 <!-- div -->
+
+
 <!-- div -->
+
 ## `xStats`
+
 <!-- div -->
+
 ### <a id="xStats" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
 xStats constructor.
 [&#9650;][1]
@@ -64,102 +79,156 @@ xStats constructor.
 
     // insert into document
     document.body.appendChild(stats.element);
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats.subclasses" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L397" title="View in source">`xStats.subclasses`</a>
 *(Array)*: An array of xStat instances.
 [&#9650;][1]
+
 <!-- /div -->
+
+
 <!-- /div -->
 
 
 <!-- div -->
+
 ## `xStats.prototype`
+
 <!-- div -->
+
 ### <a id="xStats:height" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L406" title="View in source">`xStats#height`</a>
 *(Number)*: The height of the chart *(px)*.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:locked" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L427" title="View in source">`xStats#locked`</a>
 *(Boolean)*: A flag to indicate if the chart is locked at its current display mode.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:mode" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L434" title="View in source">`xStats#mode`</a>
 *(String)*: The charts current display mode *(fps, ms, mem)*.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:padding" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L420" title="View in source">`xStats#padding`</a>
 *(Number)*: The inner padding of the chart that doesn't affect dimensions *(px)*.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:width" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L413" title="View in source">`xStats#width`</a>
 *(Number)*: The width of the chart *(px)*.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:fps" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L441" title="View in source">`xStats#fps`</a>
 *(Object)*: The "frames per second" display mode options object.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:fps.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L448" title="View in source">`xStats#fps.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:fps.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L455" title="View in source">`xStats#fps.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:mem" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L485" title="View in source">`xStats#mem`</a>
 *(Object)*: The "memory" display mode options object.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:mem.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L492" title="View in source">`xStats#mem.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:mem.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L499" title="View in source">`xStats#mem.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:ms" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L463" title="View in source">`xStats#ms`</a>
 *(Object)*: The "millisecond" display mode options object.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:ms.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L470" title="View in source">`xStats#ms.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
+
 <!-- /div -->
 
+
 <!-- div -->
+
 ### <a id="xStats:ms.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L477" title="View in source">`xStats#ms.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
+
 <!-- /div -->
+
+
 <!-- /div -->
+
+
 <!-- /div -->
+
 
   [1]: #readme "Jump back to the TOC."

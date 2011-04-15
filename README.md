@@ -9,11 +9,11 @@ xStats provides simple charts to help monitor your code performance.
 
 ## Screenshots
 
-![xStats](/jdalton/xstats.js/raw/master/xstats.png)
+![xStats](https://github.com/jdalton/xstats.js/raw/master/xstats.png)
 
 ## Documentation
 
-The documentation for xStats.js can be viewed here: [/docs/xstats.md](/jdalton/xstats.js/blob/master/docs/xstats.md#readme)
+The documentation for xStats.js can be viewed here: [/docs/README.md](https://github.com/jdalton/xstats.js/blob/master/docs/README.md#readme)
 
 ## Usage
 
