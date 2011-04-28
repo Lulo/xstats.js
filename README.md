@@ -17,10 +17,10 @@ The documentation for xStats.js can be viewed here: [/docs/README.md](https://gi
 
 ## Usage
 
-``` js
+~~~ js
 var stats = new xStats;
 document.body.appendChild(stats.element);
-```
+~~~
 
 ## Enable MEM
 

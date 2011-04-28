@@ -53,32 +53,34 @@ xStats constructor.
 1. `[options={}]` *(Object)*: Options object.
 
 #### Example
-    // basic usage
-    var stats = new xStats;
+~~~ js
+// basic usage
+var stats = new xStats;
 
-    // or using options
-    var stats = new xStats({
-      'mode': 'ms',
-      'height': 130,
-      'width':200,
-      'padding':10,
-      'locked': false,
-      'fps': {
-        'bg': '#330000',
-        'fg': '#cc6600'
-      },
-      'ms': {
-        'bg': '#000033',
-        'fg': '#3366ff'
-      },
-      'mem': {
-        'bg': '#000033',
-        'fg': '#660099'
-      }
-    });
+// or using options
+var stats = new xStats({
+  'mode': 'ms',
+  'height': 130,
+  'width':200,
+  'padding':10,
+  'locked': false,
+  'fps': {
+    'bg': '#330000',
+    'fg': '#cc6600'
+  },
+  'ms': {
+    'bg': '#000033',
+    'fg': '#3366ff'
+  },
+  'mem': {
+    'bg': '#000033',
+    'fg': '#660099'
+  }
+});
 
-    // insert into document
-    document.body.appendChild(stats.element);
+// insert into document
+document.body.appendChild(stats.element);
+~~~
 
 <!-- /div -->
 
