@@ -20,12 +20,33 @@
 * [`xStats#mode`](#xStats:mode)
 * [`xStats#padding`](#xStats:padding)
 * [`xStats#width`](#xStats:width)
+
+<!-- /div -->
+
+
+<!-- div -->
+
+## `xStats#fps`
 * [`xStats#fps`](#xStats:fps)
 * [`xStats#fps.bg`](#xStats:fps.bg)
 * [`xStats#fps.fg`](#xStats:fps.fg)
+
+<!-- /div -->
+
+
+<!-- div -->
+
+## `xStats#mem`
 * [`xStats#mem`](#xStats:mem)
 * [`xStats#mem.bg`](#xStats:mem.bg)
 * [`xStats#mem.fg`](#xStats:mem.fg)
+
+<!-- /div -->
+
+
+<!-- div -->
+
+## `xStats#ms`
 * [`xStats#ms`](#xStats:ms)
 * [`xStats#ms.bg`](#xStats:ms.bg)
 * [`xStats#ms.fg`](#xStats:ms.fg)
@@ -45,7 +66,7 @@
 
 <!-- div -->
 
-### <a id="xStats" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
+### <a id="xStats" href="" title="View in source">`xStats([options={}])`</a>
 xStats constructor.
 [&#9650;][1]
 
@@ -87,6 +108,13 @@ document.body.appendChild(stats.element);
 
 <!-- div -->
 
+## `xStats`
+### <a id="xStats" href="" title="View in source">`xStats([options={}])`</a>
+xStats constructor.
+[&#9650;][1]
+
+<!-- div -->
+
 ### <a id="xStats.subclasses" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L397" title="View in source">`xStats.subclasses`</a>
 *(Array)*: An array of xStat instances.
 [&#9650;][1]
@@ -100,6 +128,9 @@ document.body.appendChild(stats.element);
 <!-- div -->
 
 ## `xStats.prototype`
+### <a id="xStats" href="" title="View in source">`xStats([options={}])`</a>
+xStats constructor.
+[&#9650;][1]
 
 <!-- div -->
 
@@ -146,14 +177,28 @@ document.body.appendChild(stats.element);
 <!-- /div -->
 
 
+<!-- /div -->
+
+
 <!-- div -->
 
-### <a id="xStats:fps" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L441" title="View in source">`xStats#fps`</a>
+## `fps`
+
+<!-- div -->
+
+### <a id="xStats:fps" href="" title="View in source">`fps`</a>
 *(Object)*: The "frames per second" display mode options object.
 [&#9650;][1]
 
 <!-- /div -->
 
+
+<!-- div -->
+
+## `fps`
+### <a id="xStats:fps" href="" title="View in source">`fps`</a>
+*(Object)*: The "frames per second" display mode options object.
+[&#9650;][1]
 
 <!-- div -->
 
@@ -173,14 +218,28 @@ document.body.appendChild(stats.element);
 <!-- /div -->
 
 
+<!-- /div -->
+
+
 <!-- div -->
 
-### <a id="xStats:mem" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L485" title="View in source">`xStats#mem`</a>
+## `mem`
+
+<!-- div -->
+
+### <a id="xStats:mem" href="" title="View in source">`mem`</a>
 *(Object)*: The "memory" display mode options object.
 [&#9650;][1]
 
 <!-- /div -->
 
+
+<!-- div -->
+
+## `mem`
+### <a id="xStats:mem" href="" title="View in source">`mem`</a>
+*(Object)*: The "memory" display mode options object.
+[&#9650;][1]
 
 <!-- div -->
 
@@ -200,14 +259,28 @@ document.body.appendChild(stats.element);
 <!-- /div -->
 
 
+<!-- /div -->
+
+
 <!-- div -->
 
-### <a id="xStats:ms" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L463" title="View in source">`xStats#ms`</a>
+## `ms`
+
+<!-- div -->
+
+### <a id="xStats:ms" href="" title="View in source">`ms`</a>
 *(Object)*: The "millisecond" display mode options object.
 [&#9650;][1]
 
 <!-- /div -->
 
+
+<!-- div -->
+
+## `ms`
+### <a id="xStats:ms" href="" title="View in source">`ms`</a>
+*(Object)*: The "millisecond" display mode options object.
+[&#9650;][1]
 
 <!-- div -->
 

@@ -222,7 +222,7 @@
    */
   function interpolate(string, object) {
     for (var key in object) {
-      string = string.replace(RegExp('#\\{' + key + '\\}', 'g'), String(object[key]));
+      string = string.replace(RegExp('#\\{' + key + '\\}', 'g'), object[key]);
     }
     return string;
   }
