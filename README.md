@@ -9,11 +9,11 @@ xStats provides simple charts to help monitor your code performance.
 
 ## Screenshots
 
-![xStats](https://github.com/jdalton/xstats.js/raw/master/xstats.png)
+![xStats](https://github.com/bestiejs/xstats.js/raw/master/xstats.png)
 
 ## Documentation
 
-The documentation for xStats.js can be viewed here: [/docs/README.md](https://github.com/jdalton/xstats.js/blob/master/docs/README.md#readme)
+The documentation for xStats.js can be viewed here: [/docs/README.md](https://github.com/bestiejs/xstats.js/blob/master/docs/README.md#readme)
 
 ## Usage
 
@@ -38,14 +38,14 @@ document.body.appendChild(stats.element);
 To clone this repository including all submodules, using git 1.6.5 or later:
 
 ~~~ bash
-git clone --recursive https://github.com/jdalton/xstats.js.git
+git clone --recursive https://github.com/bestiejs/xstats.js.git
 cd xstats.js
 ~~~
 
 For older git versions, just use:
 
 ~~~ bash
-git clone https://github.com/jdalton/xstats.js.git
+git clone https://github.com/bestiejs/xstats.js.git
 cd xstats.js
 git submodule update --init
 ~~~
