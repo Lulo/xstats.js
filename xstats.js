@@ -4,7 +4,7 @@
  * Based on Stats.js, copyright Ricardo Cabello <http://mrdoob.com/>
  * Available under MIT license <https://github.com/jdalton/xstats.js/raw/master/LICENSE.txt>
  */
-(function(window, document) {
+;(function(window, document) {
 
   /** Detect memory object */
   var memoryNS = (memoryNS = window.performance || window.webkitPerformance || window.console) &&
