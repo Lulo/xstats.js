@@ -1,12 +1,14 @@
 <?php
 
   // cleanup requested filepath
-  $_GET['f'] = isset($_GET['f']) ? $_GET['f'] : 'xstats';
-  $_GET['f'] = preg_replace('#(\.*[\/])+#', '', $_GET['f']);
-  $_GET['f'] = $_GET['f'] . (preg_match('/\.[a-z]+$/', $_GET['f']) ? '' : '.js');
+  $file = isset($_GET['f']) ? $_GET['f'] : 'xstats';
+  $file = preg_replace('#(\.*[\/])+#', '', $file);
+  $file .= preg_match('/\.[a-z]+$/', $file) ? '' : '.js';
 
   // output filename
-  $_GET['o'] = isset($_GET['o']) ? $_GET['o'] : basename($_GET['f']);
+  $output = isset($_GET['o'])
+    ? $_GET['o'] : isset($_SERVER['argv'][1])
+    ? $_SERVER['argv'][1] : basename($file);
 
   /*--------------------------------------------------------------------------*/
 
@@ -14,13 +16,13 @@
 
   // generate Markdown
   $markdown = docdown(array(
-    'path'  => '../' . $_GET['f'],
+    'path'  => '../' . $file,
     'title' => 'xStats.js API documentation',
-    'url'   => 'https://github.com/jdalton/xstats.js/blob/master/xstats.js'
+    'url'   => 'https://github.com/bestiejs/xstats.js/blob/master/xstats.js'
   ));
 
   // save to a .md file
-  file_put_contents($_GET['o'] . '.md', $markdown);
+  file_put_contents($output . '.md', $markdown);
 
   // print
   header('Content-Type: text/plain;charset=utf-8');
