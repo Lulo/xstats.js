@@ -185,7 +185,8 @@
     var node,
         prop = 'cssText',
         sheet = cache.sheet;
-    if (!sheet){
+
+    if (!sheet) {
       node = document.getElementsByTagName('head')[0];
       sheet = cache.sheet = document.createElement('style');
       sheet.type = 'text/css';
@@ -238,7 +239,7 @@
         classNames = element.className.split(' '),
         filtered = [];
 
-    while (cn = classNames.pop()) {
+    while ((cn = classNames.pop())) {
       if (className != cn) {
         filtered.push(cn);
       }
@@ -248,11 +249,11 @@
 
   /**
    * Repeat a string a given number of times using the `Exponentiation by squaring` algorithm.
-   * http://www.merlyn.demon.co.uk/js-misc0.htm#MLS
    * @private
    * @param {String} string The string to repeat.
    * @param {Number} count The number of times to repeat the string.
    * @returns {String} The repeated string.
+   * @see http://www.merlyn.demon.co.uk/js-misc0.htm#MLS
    */
   function repeat(string, count) {
     if (count < 1) return '';

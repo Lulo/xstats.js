@@ -66,7 +66,7 @@
 
 <!-- div -->
 
-### <a id="xStats" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
+### <a id="xStats" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
 xStats constructor.
 [&#9650;][1]
 
@@ -109,13 +109,13 @@ document.body.appendChild(stats.element);
 <!-- div -->
 
 ## `xStats`
-### <a id="xStats" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
+### <a id="xStats" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
 xStats constructor.
 [&#9650;][1]
 
 <!-- div -->
 
-### <a id="xStats.subclasses" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L397" title="View in source">`xStats.subclasses`</a>
+### <a id="xStats.subclasses" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L398" title="View in source">`xStats.subclasses`</a>
 *(Array)*: An array of xStat instances.
 [&#9650;][1]
 
@@ -128,13 +128,13 @@ xStats constructor.
 <!-- div -->
 
 ## `xStats.prototype`
-### <a id="xStats" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
+### <a id="xStats" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L73" title="View in source">`xStats([options={}])`</a>
 xStats constructor.
 [&#9650;][1]
 
 <!-- div -->
 
-### <a id="xStats:height" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L406" title="View in source">`xStats#height`</a>
+### <a id="xStats:height" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L407" title="View in source">`xStats#height`</a>
 *(Number)*: The height of the chart *(px)*.
 [&#9650;][1]
 
@@ -143,7 +143,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:locked" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L427" title="View in source">`xStats#locked`</a>
+### <a id="xStats:locked" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L428" title="View in source">`xStats#locked`</a>
 *(Boolean)*: A flag to indicate if the chart is locked at its current display mode.
 [&#9650;][1]
 
@@ -152,7 +152,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:mode" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L434" title="View in source">`xStats#mode`</a>
+### <a id="xStats:mode" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L435" title="View in source">`xStats#mode`</a>
 *(String)*: The charts current display mode *(fps, ms, mem)*.
 [&#9650;][1]
 
@@ -161,7 +161,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:padding" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L420" title="View in source">`xStats#padding`</a>
+### <a id="xStats:padding" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L421" title="View in source">`xStats#padding`</a>
 *(Number)*: The inner padding of the chart that doesn't affect dimensions *(px)*.
 [&#9650;][1]
 
@@ -170,7 +170,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:width" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L413" title="View in source">`xStats#width`</a>
+### <a id="xStats:width" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L414" title="View in source">`xStats#width`</a>
 *(Number)*: The width of the chart *(px)*.
 [&#9650;][1]
 
@@ -186,7 +186,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:fps" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L441" title="View in source">`fps`</a>
+### <a id="xStats:fps" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L442" title="View in source">`fps`</a>
 *(Object)*: The "frames per second" display mode options object.
 [&#9650;][1]
 
@@ -195,14 +195,7 @@ xStats constructor.
 
 <!-- div -->
 
-## `fps`
-### <a id="xStats:fps" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L441" title="View in source">`fps`</a>
-*(Object)*: The "frames per second" display mode options object.
-[&#9650;][1]
-
-<!-- div -->
-
-### <a id="xStats:fps.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L448" title="View in source">`xStats#fps.bg`</a>
+### <a id="xStats:fps.bg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L449" title="View in source">`xStats#fps.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
 
@@ -211,7 +204,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:fps.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L455" title="View in source">`xStats#fps.fg`</a>
+### <a id="xStats:fps.fg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L456" title="View in source">`xStats#fps.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
 
@@ -227,7 +220,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:mem" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L485" title="View in source">`mem`</a>
+### <a id="xStats:mem" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L486" title="View in source">`mem`</a>
 *(Object)*: The "memory" display mode options object.
 [&#9650;][1]
 
@@ -236,14 +229,7 @@ xStats constructor.
 
 <!-- div -->
 
-## `mem`
-### <a id="xStats:mem" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L485" title="View in source">`mem`</a>
-*(Object)*: The "memory" display mode options object.
-[&#9650;][1]
-
-<!-- div -->
-
-### <a id="xStats:mem.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L492" title="View in source">`xStats#mem.bg`</a>
+### <a id="xStats:mem.bg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L493" title="View in source">`xStats#mem.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
 
@@ -252,7 +238,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:mem.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L499" title="View in source">`xStats#mem.fg`</a>
+### <a id="xStats:mem.fg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L500" title="View in source">`xStats#mem.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
 
@@ -268,7 +254,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:ms" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L463" title="View in source">`ms`</a>
+### <a id="xStats:ms" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L464" title="View in source">`ms`</a>
 *(Object)*: The "millisecond" display mode options object.
 [&#9650;][1]
 
@@ -277,14 +263,7 @@ xStats constructor.
 
 <!-- div -->
 
-## `ms`
-### <a id="xStats:ms" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L463" title="View in source">`ms`</a>
-*(Object)*: The "millisecond" display mode options object.
-[&#9650;][1]
-
-<!-- div -->
-
-### <a id="xStats:ms.bg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L470" title="View in source">`xStats#ms.bg`</a>
+### <a id="xStats:ms.bg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L471" title="View in source">`xStats#ms.bg`</a>
 *(String)*: The background color of the chart for the display mode.
 [&#9650;][1]
 
@@ -293,7 +272,7 @@ xStats constructor.
 
 <!-- div -->
 
-### <a id="xStats:ms.fg" href="https://github.com/jdalton/xstats.js/blob/master/xstats.js#L477" title="View in source">`xStats#ms.fg`</a>
+### <a id="xStats:ms.fg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L478" title="View in source">`xStats#ms.fg`</a>
 *(String)*: The foreground color of the chart for the display mode.
 [&#9650;][1]
 
