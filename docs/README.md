@@ -182,11 +182,11 @@ xStats constructor.
 
 <!-- div -->
 
-## `fps`
+## `xStats#fps`
 
 <!-- div -->
 
-### <a id="xStats:fps" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L442" title="View in source">`fps`</a>
+### <a id="xStats:fps" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L442" title="View in source">`xStats#fps`</a>
 *(Object)*: The "frames per second" display mode options object.
 [&#9650;][1]
 
@@ -216,11 +216,11 @@ xStats constructor.
 
 <!-- div -->
 
-## `mem`
+## `xStats#mem`
 
 <!-- div -->
 
-### <a id="xStats:mem" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L486" title="View in source">`mem`</a>
+### <a id="xStats:mem" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L486" title="View in source">`xStats#mem`</a>
 *(Object)*: The "memory" display mode options object.
 [&#9650;][1]
 
@@ -250,11 +250,11 @@ xStats constructor.
 
 <!-- div -->
 
-## `ms`
+## `xStats#ms`
 
 <!-- div -->
 
-### <a id="xStats:ms" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L464" title="View in source">`ms`</a>
+### <a id="xStats:ms" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L464" title="View in source">`xStats#ms`</a>
 *(Object)*: The "millisecond" display mode options object.
 [&#9650;][1]
 
