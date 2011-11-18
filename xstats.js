@@ -19,6 +19,9 @@
     'data': { 'fps': new Data, 'ms': new Data, 'mem': new Data }
   },
 
+  /** Shortcut used to convert array-like objects to arrays */
+  slice = [].slice,
+
   /** Math shortcuts */
   floor = Math.floor,
   max   = Math.max,
@@ -38,12 +41,27 @@
   }
 
   /**
+   * Event constructor.
+   * @constructor
+   * @memberOf xStats
+   * @param {String|Object} type The event type.
+   */
+  function Event(type) {
+    var me = this;
+    return (me && me.constructor != Event)
+      ? new Event(type)
+      : (type instanceof Event)
+          ? type
+          : extend(me, typeof type == 'string' ? { 'type': type } : type);
+  }
+
+  /**
    * xStats constructor.
    * @constructor
    * @param {Object} [options={}] Options object.
    * @example
    *
-   * // basic usage
+   * // basic usage (the `new` operator is optional)
    * var stats = new xStats;
    *
    * // or using options
@@ -72,26 +90,34 @@
    */
   function xStats(options) {
     var clipped,
+        element,
+        fps,
         height,
+        mem,
+        ms,
         padding,
+        uid,
         width,
-        me = this,
-        tmp = { },
         data = cache.data,
-        element = document.createElement('div'),
-        fps = extend({ }, me.fps),
-        ms = extend({ }, me.ms),
-        mem = extend({ }, me.mem),
-        uid = 'xstats' + cache.counter++;
+        me = this,
+        tmp = { };
+
+    // allow instance creation without the `new` operator
+    if (me && me.constructor != xStats) {
+      return new xStats(options);
+    }
+
+    element = document.createElement('div');
+    uid = 'xstats' + cache.counter++;
 
     // apply options
     extend(me, options || (options = { }));
     me.uid = uid;
     extend(tmp, me);
 
-    fps = me.fps = extend(fps, options.fps);
-    ms = me.ms = extend(ms, options.ms);
-    mem = me.mem = extend(mem, options.mem);
+    fps = me.fps = extend(extend({ }, me.fps), options.fps);
+    ms = me.ms = extend(extend({ }, me.ms), options.ms);
+    mem = me.mem = extend(extend({ }, me.mem), options.mem);
 
     // compute dimensions
     padding = me.padding * 2;
@@ -138,7 +164,13 @@
     // build interface
     element.className = 'xstats ' + uid + ' ' + me.mode;
     element.innerHTML = '<div class=bg></div><div class=mi><p>&nbsp;</p><ul>' + repeat('<li></li>', width) + '</ul></div><div class=fg></div>';
-    addListener(element, 'click', createSwapMode(me));
+
+    // add element event listeners
+    if (typeof element.addEventListener != 'undefined') {
+      element.addEventListener('click', createSwapMode(me), false);
+    } else if (element.attachEvent != 'undefined') {
+      element.attachEvent('onclick', createSwapMode(me));
+    }
 
     // grab elements
     me.element = element;
@@ -162,21 +194,6 @@
   }
 
   /**
-   * Registers an event listener on an element.
-   * @private
-   * @param {Object} element The element.
-   * @param {String} eventName The name of the event to listen to.
-   * @param {Function} handler The event handler.
-   */
-  function addListener(element, eventName, handler) {
-    if (typeof element.addEventListener != 'undefined') {
-      element.addEventListener(eventName, handler, false);
-    } else if (element.attachEvent != 'undefined') {
-      element.attachEvent('on' + eventName, handler);
-    }
-  }
-
-  /**
    * Appends CSS text to a planted style sheet.
    * @private
    * @param {String} cssText The CSS text.
@@ -197,6 +214,26 @@
       node = sheet.firstChild || sheet.appendChild(document.createTextNode(''));
     }
     node[prop] += cssText;
+  }
+
+  /**
+   * An iteration utility for arrays.
+   * Callbacks may terminate the loop by explicitly returning `false`.
+   * @private
+   * @param {Array} array The array to iterate over.
+   * @param {Function} callback The function called per iteration.
+   * @returns {Array} Returns the array iterated over.
+   */
+  function each(array, callback) {
+    var index = -1,
+        length = array.length;
+
+    while (++index < length) {
+      if (callback(array[index], index, array) === false) {
+        break;
+      }
+    }
+    return array;
   }
 
   /**
@@ -260,6 +297,108 @@
     if (count % 2) return repeat(string, count - 1) + string;
     var half = repeat(string, count / 2);
     return half + half;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Registers a single listener for the specified event type(s).
+   * @memberOf xStats
+   * @param {String} type The event type.
+   * @param {Function} listener The function called when the event occurs.
+   * @returns {Object} The xStats instance.
+   * @example
+   *
+   * // register a listener for an event type
+   * xs.addListener('sample', listener);
+   *
+   * // register a listener for multiple event types
+   * xs.addListener('start sample', listener);
+   */
+  function addListener(type, listener) {
+    var me = this,
+        events = me.events || (me.events = {});
+
+    each(type.split(' '), function(type) {
+      (events[type] || (events[type] = [])).push(listener);
+    });
+    return me;
+  }
+
+  /**
+   * Executes all registered listeners of the specified event type.
+   * @memberOf xStats
+   * @param {String|Object} type The event type or object.
+   * @returns {Boolean} Returns `true` if all listeners were executed, else `false`.
+   */
+  function emit(type) {
+    var me = this,
+        event = Event(type),
+        args = (arguments[0] = event, slice.call(arguments)),
+        events = me.events,
+        listeners = events && events[event.type] || [],
+        result = true;
+
+    each(listeners.slice(), function(listener) {
+      if (!(result = listener.apply(me, args) !== false)) {
+        return result;
+      }
+    });
+    return result;
+  }
+
+  /**
+   * Unregisters a single listener for the specified event type(s).
+   * @memberOf xStats
+   * @param {String} type The event type.
+   * @param {Function} listener The function to unregister.
+   * @returns {Object} The xStats instance.
+   * @example
+   *
+   * // unregister a listener for an event type
+   * xs.removeListener('sample', listener);
+   *
+   * // unregister a listener for multiple event types
+   * xs.removeListener('start sample', listener);
+   */
+  function removeListener(type, listener) {
+    var me = this,
+        events = me.events;
+
+    each(type.split(' '), function(type) {
+      var listeners = events && events[type] || [],
+          index = indexOf(listeners, listener);
+      if (index > -1) {
+        listeners.splice(index, 1);
+      }
+    });
+    return me;
+  }
+
+  /**
+   * Unregisters all listeners or those for the specified event type(s).
+   * @memberOf xStats
+   * @param {String} type The event type.
+   * @returns {Object} The xStats instance.
+   * @example
+   *
+   * // unregister all listeners
+   * xs.removeAllListeners();
+   *
+   * // unregister all listeners for an event type
+   * xs.removeAllListeners('sample');
+   *
+   * // unregister all listeners for multiple event types
+   * xs.removeAllListeners('start sample complete');
+   */
+  function removeAllListeners(type) {
+    var me = this,
+        events = me.events;
+
+    each(type ? type.split(' ') : events, function(type) {
+      (events && events[type] || []).length = 0;
+    });
+    return me;
   }
 
   /*--------------------------------------------------------------------------*/
@@ -349,15 +488,9 @@
    * @private
    */
   function update() {
-    var canvas,
-        entry,
-        me,
-        mode,
-        data = cache.data,
+    var data = cache.data,
         now = new Date,
-        secValue = now - cache.lastSecond,
-        subclasses = xStats.subclasses,
-        length = subclasses.length;
+        secValue = now - cache.lastSecond;
 
     // skip first call
     if (cache.lastTime != null) {
@@ -371,17 +504,18 @@
         cache.lastSecond = now;
       }
       // render instances
-      while (length--) {
-        me = subclasses[length];
-        mode = me.mode;
-        entry = data[mode][0];
+      each(xStats.subclasses, function(subclass) {
+        var canvas = subclass.canvas,
+            mode = subclass.mode,
+            entry = data[mode][0];
+
         if (entry && (mode == 'ms' || !cache.frames)) {
-          canvas = me.canvas;
-          setTitle(me, entry.value);
-          setBar(me, canvas.insertBefore(canvas.lastChild, canvas.firstChild), entry.percent);
+          setTitle(subclass, entry.value);
+          setBar(subclass, canvas.insertBefore(canvas.lastChild, canvas.firstChild), entry.percent);
         }
-      }
-    } else {
+      });
+    }
+    else {
       cache.lastSecond = now;
     }
     cache.lastTime = now;
@@ -392,65 +526,74 @@
   /**
    * An array of xStat instances.
    * @static
-   * @member xStats
+   * @memberOf xStats
    * @type Array
    */
   xStats.subclasses = [];
 
-  xStats.prototype = {
+  /*--------------------------------------------------------------------------*/
+
+  extend(xStats.prototype, {
 
     /**
      * The height of the chart (px).
-     * @member xStats
+     * @memberOf xStats
      * @type Number
      */
     'height': 48,
 
     /**
      * The width of the chart (px).
-     * @member xStats
+     * @memberOf xStats
      * @type Number
      */
     'width': 94,
 
     /**
      * The inner padding of the chart that doesn't affect dimensions (px).
-     * @member xStats
+     * @memberOf xStats
      * @type Number
      */
     'padding': 3,
 
     /**
      * A flag to indicate if the chart is locked at its current display mode.
-     * @member xStats
+     * @memberOf xStats
      * @type Boolean
      */
     'locked': false,
 
     /**
      * The charts current display mode (fps, ms, mem).
-     * @member xStats
+     * @memberOf xStats
      * @type String
      */
     'mode': 'fps',
 
     /**
+     * Alias of [`xStats#addListener`](#xStats:addListener).
+     * @memberOf xStats
+     * @type Function
+     */
+    'on': addListener,
+
+    /**
      * The "frames per second" display mode options object.
-     * @member xStats
+     * @memberOf xStats
      * @type Object
      */
     'fps': {
 
       /**
        * The background color of the chart for the display mode.
-       * @member xStats#fps
+       * @memberOf xStats#fps
        * @type String
        */
       'bg': '#282845',
 
       /**
        * The foreground color of the chart for the display mode.
-       * @member xStats#fps
+       * @memberOf xStats#fps
        * @type String
        */
       'fg': '#1affff'
@@ -458,21 +601,21 @@
 
     /**
      * The "millisecond" display mode options object.
-     * @member xStats
+     * @memberOf xStats
      * @type Object
      */
     'ms':  {
 
       /**
        * The background color of the chart for the display mode.
-       * @member xStats#ms
+       * @memberOf xStats#ms
        * @type String
        */
       'bg': '#284528',
 
       /**
        * The foreground color of the chart for the display mode.
-       * @member xStats#ms
+       * @memberOf xStats#ms
        * @type String
        */
       'fg': '#1aff1a'
@@ -480,31 +623,57 @@
 
     /**
      * The "memory" display mode options object.
-     * @member xStats
+     * @memberOf xStats
      * @type Object
      */
     'mem': {
 
       /**
        * The background color of the chart for the display mode.
-       * @member xStats#mem
+       * @memberOf xStats#mem
        * @type String
        */
       'bg': '#452831',
 
       /**
        * The foreground color of the chart for the display mode.
-       * @member xStats#mem
+       * @memberOf xStats#mem
        * @type String
        */
       'fg': '#ff1a8d'
-    }
-  };
+    },
+
+    // registers a single listener
+    'addListener': addListener,
+
+    // executes listeners of a specified type
+    'emit': emit,
+
+    // removes all listeners of a specified type
+    'removeAllListeners': removeAllListeners,
+
+    // removes a single listener
+    'removeListener': removeListener
+  });
 
   /*--------------------------------------------------------------------------*/
 
-  // expose
-  window.xStats = xStats;
+  /**
+   * The event type.
+   * @memberOf xStats.Event
+   * @type String
+   */
+  Event.prototype.type = '';
+
+  /*--------------------------------------------------------------------------*/
+
+  // expose Event
+  xStats.Event = Event;
+
+  // expose xStats
+  // use square bracket notation so Closure Compiler won't munge `xStats`
+  // http://code.google.com/closure/compiler/docs/api-tutorial3.html#export
+  window['xStats'] = xStats;
 
   // ensure we can read memory info
   memoryNS = memoryNS && !!memoryNS.memory.usedJSHeapSize && memoryNS;
@@ -512,7 +681,23 @@
   // start recording
   setInterval(update, 1e3 / 60);
 
-  // shared css
+  // start sampling (once every two seconds)
+  setInterval(function() {
+    var data = cache.data,
+        fps = data.fps[0],
+        mem = data.mem[0],
+        ms = data.ms[0];
+
+    each(xStats.subclasses, function(subclass) {
+      subclass.emit('sample', {
+        'fps': fps && fps.value,
+        'mem': mem && mem.value,
+        'ms':  ms  && ms.value
+      });
+    });
+  }, 2e3);
+
+  // shared CSS
   appendCSS(
     '.xstats div{position:absolute;overflow:hidden}' +
     '.xstats p{margin:0;overflow:hidden;font-family:sans-serif;-webkit-text-size-adjust:100%}' +
