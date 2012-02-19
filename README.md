@@ -33,7 +33,7 @@ document.body.appendChild(stats.element);
 
 * **Safari**
   * MacOS: Open `~/Library/Preferences/com.apple.Safari.plist` file for editing, and
-    check `WebKitMemoryInfoEnabled` *([screenshot](http://mrdoob.github.com/stats.js/assets/safari_enablemem.png))*
+    check `WebKitMemoryInfoEnabled`
 
 ## Cloning this repo
 
@@ -53,3 +53,8 @@ git submodule update --init
 ~~~
 
 Feel free to fork if you see possible improvements!
+
+## Author
+
+* [John-David Dalton](http://allyoucanleet.com/)
+  [![twitter/jdalton](http://gravatar.com/avatar/299a3d891ff1920b69c364d061007043?s=70)](https://twitter.com/jdalton "Follow @jdalton on Twitter")
