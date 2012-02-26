@@ -15,7 +15,7 @@ xStats provides simple charts to help monitor your code performance.
 
 The documentation for xStats.js can be viewed here: [/doc/README.md](https://github.com/bestiejs/xstats.js/blob/master/doc/README.md#readme)
 
-For more information on the techniques and code behind xStats.js please check out [my screencast](http://allyoucanleet.com/2011/02/28/learned-from-creating-xstats-js) over what I learned creating it.
+For more information on the techniques and code behind xStats.js please check out [my screencast](http://allyoucanleet.com/post/18087971334/performance-monitoring-for-all) over it.
 
 ## Usage
 
