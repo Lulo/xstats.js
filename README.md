@@ -1,4 +1,4 @@
-# xStats.js
+# xStats.js <sup>v1.0.0-pre</sup>
 ## Cross-browser JavaScript Performance Monitor
 
 xStats provides simple charts to help monitor your code performance.

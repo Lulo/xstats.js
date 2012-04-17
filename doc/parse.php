@@ -21,7 +21,7 @@
   // generate Markdown
   $markdown = docdown(array(
     'path'  => '../' . $file,
-    'title' => 'xStats.js API documentation',
+    'title' => 'xStats.js <sup>v1.0.0-pre</sup>',
     'url'   => 'https://github.com/bestiejs/xstats.js/blob/master/xstats.js'
   ));
 

@@ -1,37 +1,39 @@
 /*!
- * xStats.js
+ * xStats.js v1.0.0-pre
  * Copyright 2011-2012 John-David Dalton <http://allyoucanleet.com/>
  * Based on Stats.js, copyright Ricardo Cabello <http://mrdoob.com/>
  * Available under MIT license <https://github.com/jdalton/xstats.js/raw/master/LICENSE.txt>
  */
 ;(function(window, document) {
+  'use strict';
 
   /** Detect memory object */
   var memoryNS = (memoryNS = window.performance || window.webkitPerformance || window.console) &&
-    memoryNS.memory && memoryNS,
+    memoryNS.memory && memoryNS;
+
+  /** Shortcut used to convert array-like objects to arrays */
+  var slice = [].slice;
 
   /** Internal cached used by various methods */
-  cache = {
+  var cache = {
     'counter': 1,
-    'frames': 0,
+    'frameTimes': [],
     'lastSecond': null,
     'lastTime': null,
     'data': { 'fps': new Data, 'ms': new Data, 'mem': new Data }
-  },
-
-  /** Shortcut used to convert array-like objects to arrays */
-  slice = [].slice,
+  };
 
   /** Math shortcuts */
-  floor = Math.floor,
-  max   = Math.max,
-  min   = Math.min,
-  round = Math.round;
+  var floor = Math.floor,
+      max   = Math.max,
+      min   = Math.min,
+      round = Math.round;
 
   /*--------------------------------------------------------------------------*/
 
   /**
-   * Data object constructor.
+   * The Data object constructor.
+   *
    * @private
    * @constructor
    */
@@ -41,14 +43,15 @@
   }
 
   /**
-   * Event constructor.
+   * The Event constructor.
+   *
    * @constructor
    * @memberOf xStats
    * @param {String|Object} type The event type.
    */
   function Event(type) {
     var me = this;
-    return (me && me.constructor != Event)
+    return (!me || me.constructor != Event)
       ? new Event(type)
       : (type instanceof Event)
           ? type
@@ -56,7 +59,8 @@
   }
 
   /**
-   * xStats constructor.
+   * The xStats constructor.
+   *
    * @constructor
    * @param {Object} [options={}] Options object.
    * @example
@@ -100,10 +104,10 @@
         width,
         data = cache.data,
         me = this,
-        tmp = { };
+        tmp = {};
 
     // allow instance creation without the `new` operator
-    if (me && me.constructor != xStats) {
+    if (!me || me.constructor != xStats) {
       return new xStats(options);
     }
 
@@ -111,13 +115,13 @@
     uid = 'xstats' + cache.counter++;
 
     // apply options
-    extend(me, options || (options = { }));
+    extend(me, options || (options = {}));
     me.uid = uid;
     extend(tmp, me);
 
-    fps = me.fps = extend(extend({ }, me.fps), options.fps);
-    ms = me.ms = extend(extend({ }, me.ms), options.ms);
-    mem = me.mem = extend(extend({ }, me.mem), options.mem);
+    fps = me.fps = extend(extend({}, me.fps), options.fps);
+    ms = me.ms = extend(extend({}, me.ms), options.ms);
+    mem = me.mem = extend(extend({}, me.mem), options.mem);
 
     // compute dimensions
     padding = me.padding * 2;
@@ -185,6 +189,7 @@
 
   /**
    * Adds a css class name to an element's className property.
+   *
    * @private
    * @param {Object} element The element.
    * @param {String} className The class name.
@@ -195,6 +200,7 @@
 
   /**
    * Appends CSS text to a planted style sheet.
+   *
    * @private
    * @param {String} cssText The CSS text.
    */
@@ -219,6 +225,7 @@
   /**
    * An iteration utility for arrays.
    * Callbacks may terminate the loop by explicitly returning `false`.
+   *
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
@@ -237,14 +244,15 @@
   }
 
   /**
-   * Copies own/inherited properties of a source object to the destination object.
+   * Copies enumerable properties from the source object to the destination object.
+   *
    * @private
    * @param {Object} destination The destination object.
    * @param {Object} [source={}] The source object.
    * @returns {Object} The destination object.
    */
   function extend(destination, source) {
-    source || (source = { });
+    source || (source = {});
     for (var key in source) {
       destination[key] = source[key];
     }
@@ -253,6 +261,7 @@
 
   /**
    * Modify a string by replacing named tokens with matching object property values.
+   *
    * @private
    * @param {String} string The string to modify.
    * @param {Object} object The template object.
@@ -267,6 +276,7 @@
 
   /**
    * Removes a css class name from an element's className property.
+   *
    * @private
    * @param {Object} element The element.
    * @param {String} className The class name.
@@ -286,6 +296,7 @@
 
   /**
    * Repeat a string a given number of times using the `Exponentiation by squaring` algorithm.
+   *
    * @private
    * @param {String} string The string to repeat.
    * @param {Number} count The number of times to repeat the string.
@@ -303,6 +314,7 @@
 
   /**
    * Registers a single listener for the specified event type(s).
+   *
    * @memberOf xStats
    * @param {String} type The event type.
    * @param {Function} listener The function called when the event occurs.
@@ -327,6 +339,7 @@
 
   /**
    * Executes all registered listeners of the specified event type.
+   *
    * @memberOf xStats
    * @param {String|Object} type The event type or object.
    * @returns {Boolean} Returns `true` if all listeners were executed, else `false`.
@@ -349,6 +362,7 @@
 
   /**
    * Unregisters a single listener for the specified event type(s).
+   *
    * @memberOf xStats
    * @param {String} type The event type.
    * @param {Function} listener The function to unregister.
@@ -377,6 +391,7 @@
 
   /**
    * Unregisters all listeners or those for the specified event type(s).
+   *
    * @memberOf xStats
    * @param {String} type The event type.
    * @returns {Object} The xStats instance.
@@ -404,7 +419,9 @@
   /*--------------------------------------------------------------------------*/
 
   /**
-   * Creates the click event handler that controls swaping modes and redrawing the display.
+   * Creates the click event handler that controls swaping modes and redrawing
+   * the display.
+   *
    * @private
    * @param {Object} me The xStats instance.
    * @returns {Function} The event handler.
@@ -417,13 +434,12 @@
             nodes = me.canvas.childNodes,
             data = cache.data[mode],
             entry = data[0],
-            pad = nodes.length,
-            length = pad--;
+            length = nodes.length;
 
         me.mode = mode;
         setTitle(me, entry && entry.value);
         while (length--) {
-          entry = data[pad - length];
+          entry = data[length];
           setBar(me, nodes[length], entry && entry.percent);
         }
         removeClass(element, 'fps');
@@ -436,6 +452,7 @@
 
   /**
    * Records a value for the given mode.
+   *
    * @private
    * @param {String} mode The mode to record.
    * @param {Mixed} value The value recorded.
@@ -454,6 +471,7 @@
 
   /**
    * Sets the LI element's height based on the given value.
+   *
    * @private
    * @param {Object} me The xStats instance.
    * @param {Object} node The LI element.
@@ -470,6 +488,7 @@
 
   /**
    * Sets a chart's title based on the given value.
+   *
    * @private
    * @param {Object} me The xStats instance.
    * @param {Number} value The value.
@@ -485,22 +504,36 @@
 
   /**
    * Updates chart data and display of all xStats instances.
+   *
    * @private
    */
   function update() {
-    var data = cache.data,
+    var length,
+        data = cache.data,
+        frameTimes = cache.frameTimes,
+        fps = 0,
         now = new Date,
-        secValue = now - cache.lastSecond;
+        secValue = now - cache.lastSecond,
+        lastSec = new Date - 1000;
 
     // skip first call
     if (cache.lastTime != null) {
       // record data
-      cache.frames++;
-      record('ms', max(1e3 / 60, now - cache.lastTime));
+      frameTimes.push(new Date);
+      record('ms', now - cache.lastTime);
       if (secValue > 999) {
-        record('fps', min(60, 1e3 / (secValue / cache.frames)));
+        length = frameTimes.length;
+        //console.log('length', length);
+        while (length--) {
+          if (frameTimes[length] < lastSec) {
+            break;
+          }
+          fps++;
+        }
+        //console.log('fps', fps);
+        record('fps', fps);
         memoryNS && record('mem', memoryNS.memory.usedJSHeapSize / 1048576);
-        cache.frames = 0;
+        cache.frameTimes = frameTimes.slice(length);
         cache.lastSecond = now;
       }
       // render instances
@@ -509,7 +542,7 @@
             mode = subclass.mode,
             entry = data[mode][0];
 
-        if (entry && (mode == 'ms' || !cache.frames)) {
+        if (entry && (mode == 'ms' || cache.lastSecond == now)) {
           setTitle(subclass, entry.value);
           setBar(subclass, canvas.insertBefore(canvas.lastChild, canvas.firstChild), entry.percent);
         }
@@ -525,6 +558,7 @@
 
   /**
    * An array of xStat instances.
+   *
    * @static
    * @memberOf xStats
    * @type Array
@@ -537,6 +571,7 @@
 
     /**
      * The height of the chart (px).
+     *
      * @memberOf xStats
      * @type Number
      */
@@ -544,6 +579,7 @@
 
     /**
      * The width of the chart (px).
+     *
      * @memberOf xStats
      * @type Number
      */
@@ -551,6 +587,7 @@
 
     /**
      * The inner padding of the chart that doesn't affect dimensions (px).
+     *
      * @memberOf xStats
      * @type Number
      */
@@ -558,6 +595,7 @@
 
     /**
      * A flag to indicate if the chart is locked at its current display mode.
+     *
      * @memberOf xStats
      * @type Boolean
      */
@@ -565,13 +603,23 @@
 
     /**
      * The charts current display mode (fps, ms, mem).
+     *
      * @memberOf xStats
      * @type String
      */
     'mode': 'fps',
 
     /**
+     * The rate at which the "sample" event is emitted (secs).
+     *
+     * @memberOf xStats
+     * @type Number
+     */
+    'sampleRate': 0,
+
+    /**
      * Alias of [`xStats#addListener`](#xStats:addListener).
+     *
      * @memberOf xStats
      * @type Function
      */
@@ -579,6 +627,7 @@
 
     /**
      * The "frames per second" display mode options object.
+     *
      * @memberOf xStats
      * @type Object
      */
@@ -586,6 +635,7 @@
 
       /**
        * The background color of the chart for the display mode.
+       *
        * @memberOf xStats#fps
        * @type String
        */
@@ -593,6 +643,7 @@
 
       /**
        * The foreground color of the chart for the display mode.
+       *
        * @memberOf xStats#fps
        * @type String
        */
@@ -601,6 +652,7 @@
 
     /**
      * The "millisecond" display mode options object.
+     *
      * @memberOf xStats
      * @type Object
      */
@@ -608,6 +660,7 @@
 
       /**
        * The background color of the chart for the display mode.
+       *
        * @memberOf xStats#ms
        * @type String
        */
@@ -615,6 +668,7 @@
 
       /**
        * The foreground color of the chart for the display mode.
+       *
        * @memberOf xStats#ms
        * @type String
        */
@@ -623,6 +677,7 @@
 
     /**
      * The "memory" display mode options object.
+     *
      * @memberOf xStats
      * @type Object
      */
@@ -630,6 +685,7 @@
 
       /**
        * The background color of the chart for the display mode.
+       *
        * @memberOf xStats#mem
        * @type String
        */
@@ -637,6 +693,7 @@
 
       /**
        * The foreground color of the chart for the display mode.
+       *
        * @memberOf xStats#mem
        * @type String
        */
@@ -660,6 +717,7 @@
 
   /**
    * The event type.
+   *
    * @memberOf xStats.Event
    * @type String
    */
