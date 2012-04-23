@@ -7,10 +7,6 @@ xStats provides simple charts to help monitor your code performance.
 * **MS** Milliseconds needed to render a frame. The lower the number the better.
 * **MEM** Megabytes of memory used. Make sure it doesn't keep incrementing. *(WebKit-based browsers only)*
 
-## Screenshots
-
-![xStats](https://github.com/bestiejs/xstats.js/raw/master/xstats.png)
-
 ## BestieJS Incubator
 
 xStats still needs a little work to be worthy of the title *"Best in Class"*. Please, feel free to contribute additional unit tests or documentation.
@@ -20,6 +16,10 @@ xStats still needs a little work to be worthy of the title *"Best in Class"*. Pl
 The documentation for xStats.js can be viewed here: [/doc/README.md](https://github.com/bestiejs/xstats.js/blob/master/doc/README.md#readme)
 
 For more information on the techniques and code behind xStats.js please check out [my screencast](http://allyoucanleet.com/post/18087971334/performance-monitoring-for-all) over it.
+
+## Screenshots
+
+![xStats](https://github.com/bestiejs/xstats.js/raw/master/xstats.png)
 
 ## Usage
 
