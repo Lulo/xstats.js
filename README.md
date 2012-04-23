@@ -11,6 +11,10 @@ xStats provides simple charts to help monitor your code performance.
 
 ![xStats](https://github.com/bestiejs/xstats.js/raw/master/xstats.png)
 
+## BestieJS Incubator
+
+xStats still needs a little work to be worthy of the title *"Best in Class"*. Please, feel free to contribute additional unit tests or documentation.
+
 ## Documentation
 
 The documentation for xStats.js can be viewed here: [/doc/README.md](https://github.com/bestiejs/xstats.js/blob/master/doc/README.md#readme)
@@ -51,8 +55,6 @@ git clone https://github.com/bestiejs/xstats.js.git
 cd xstats.js
 git submodule update --init
 ~~~
-
-Feel free to fork if you see possible improvements!
 
 ## Author
 
