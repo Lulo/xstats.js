@@ -6,8 +6,8 @@
 <!-- div -->
 
 ## `xStats`
-* [`xStats`](#xStats)
-* [`xStats.subclasses`](#xStats.subclasses)
+* [`xStats`](#xstatsoptions)
+* [`xStats.subclasses`](#xstatssubclasses)
 
 <!-- /div -->
 
@@ -15,47 +15,47 @@
 <!-- div -->
 
 ## `xStats.prototype`
-* [`xStats#height`](#xStats:height)
-* [`xStats#locked`](#xStats:locked)
-* [`xStats#mode`](#xStats:mode)
-* [`xStats#padding`](#xStats:padding)
-* [`xStats#sampleRate`](#xStats:sampleRate)
-* [`xStats#width`](#xStats:width)
-* [`xStats#addListener`](#xStats:addListener)
-* [`xStats#emit`](#xStats:emit)
-* [`xStats#on`](#xStats:on)
-* [`xStats#removeAllListeners`](#xStats:removeAllListeners)
-* [`xStats#removeListener`](#xStats:removeListener)
+* [`xStats.prototype.height`](#xstatsprototypeheight)
+* [`xStats.prototype.locked`](#xstatsprototypelocked)
+* [`xStats.prototype.mode`](#xstatsprototypemode)
+* [`xStats.prototype.padding`](#xstatsprototypepadding)
+* [`xStats.prototype.sampleRate`](#xstatsprototypesamplerate)
+* [`xStats.prototype.width`](#xstatsprototypewidth)
+* [`xStats.prototype.addListener`](#xstatsprototypeaddlistenertype-listener)
+* [`xStats.prototype.emit`](#xstatsprototypeemittype)
+* [`xStats.prototype.on`](#xstatsprototypeon)
+* [`xStats.prototype.removeAllListeners`](#xstatsprototyperemovealllistenerstype)
+* [`xStats.prototype.removeListener`](#xstatsprototyperemovelistenertype-listener)
 
 <!-- /div -->
 
 
 <!-- div -->
 
-## `xStats#fps`
-* [`xStats#fps`](#xStats:fps)
-* [`xStats#fps.bg`](#xStats:fps.bg)
-* [`xStats#fps.fg`](#xStats:fps.fg)
+## `xStats.prototype.fps`
+* [`xStats.prototype.fps`](#xstatsprototypefps)
+* [`xStats.prototype.fps.bg`](#xstats-fpsbg)
+* [`xStats.prototype.fps.fg`](#xstats-fpsfg)
 
 <!-- /div -->
 
 
 <!-- div -->
 
-## `xStats#mem`
-* [`xStats#mem`](#xStats:mem)
-* [`xStats#mem.bg`](#xStats:mem.bg)
-* [`xStats#mem.fg`](#xStats:mem.fg)
+## `xStats.prototype.mem`
+* [`xStats.prototype.mem`](#xstatsprototypemem)
+* [`xStats.prototype.mem.bg`](#xstats-membg)
+* [`xStats.prototype.mem.fg`](#xstats-memfg)
 
 <!-- /div -->
 
 
 <!-- div -->
 
-## `xStats#ms`
-* [`xStats#ms`](#xStats:ms)
-* [`xStats#ms.bg`](#xStats:ms.bg)
-* [`xStats#ms.fg`](#xStats:ms.fg)
+## `xStats.prototype.ms`
+* [`xStats.prototype.ms`](#xstatsprototypems)
+* [`xStats.prototype.ms.bg`](#xstats-msbg)
+* [`xStats.prototype.ms.fg`](#xstats-msfg)
 
 <!-- /div -->
 
@@ -63,7 +63,7 @@
 <!-- div -->
 
 ## `xStats.Event`
-* [`xStats.Event`](#xStats.Event)
+* [`xStats.Event`](#xstatseventtype)
 
 <!-- /div -->
 
@@ -71,7 +71,7 @@
 <!-- div -->
 
 ## `xStats.Event.prototype`
-* [`xStats.Event#type`](#xStats.Event:type)
+* [`xStats.Event.prototype.type`](#xstatseventprototypetype)
 
 <!-- /div -->
 
@@ -88,9 +88,13 @@
 
 <!-- div -->
 
-### <a id="xStats" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L95" title="View in source">`xStats([options={}])`</a>
+
+<!-- div -->
+
+### `xStats([options={}])`
+<a id="xstatsoptions" href="#xstatsoptions">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L95 "View in source") [&#x24C9;][1]
+
 The xStats constructor.
-[&#9650;][1]
 
 #### Arguments
 1. `[options={}]` *(Object)*: Options object.
@@ -125,21 +129,22 @@ var stats = new xStats({
 document.body.appendChild(stats.element);
 ~~~
 
+* * *
+
 <!-- /div -->
 
 
 <!-- div -->
 
-## `xStats`
-### <a id="xStats" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L95" title="View in source">`xStats([options={}])`</a>
-The xStats constructor.
-[&#9650;][1]
 
 <!-- div -->
 
-### <a id="xStats.subclasses" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L566" title="View in source">`xStats.subclasses`</a>
+### `xStats.subclasses`
+<a id="xstatssubclasses" href="#xstatssubclasses">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L566 "View in source") [&#x24C9;][1]
+
 *(Array)*: An array of xStat instances.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
@@ -150,69 +155,106 @@ The xStats constructor.
 <!-- div -->
 
 ## `xStats.prototype`
-### <a id="xStats" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L95" title="View in source">`xStats([options={}])`</a>
-The xStats constructor.
-[&#9650;][1]
 
 <!-- div -->
 
-### <a id="xStats:height" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L578" title="View in source">`xStats#height`</a>
+
+<!-- div -->
+
+### `xStats.prototype.height`
+<a id="xstatsprototypeheight" href="#xstatsprototypeheight">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L578 "View in source") [&#x24C9;][1]
+
 *(Number)*: The height of the chart *(px)*.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:locked" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L602" title="View in source">`xStats#locked`</a>
+
+<!-- div -->
+
+### `xStats.prototype.locked`
+<a id="xstatsprototypelocked" href="#xstatsprototypelocked">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L602 "View in source") [&#x24C9;][1]
+
 *(Boolean)*: A flag to indicate if the chart is locked at its current display mode.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:mode" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L610" title="View in source">`xStats#mode`</a>
+
+<!-- div -->
+
+### `xStats.prototype.mode`
+<a id="xstatsprototypemode" href="#xstatsprototypemode">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L610 "View in source") [&#x24C9;][1]
+
 *(String)*: The charts current display mode *(fps, ms, mem)*.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:padding" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L594" title="View in source">`xStats#padding`</a>
+
+<!-- div -->
+
+### `xStats.prototype.padding`
+<a id="xstatsprototypepadding" href="#xstatsprototypepadding">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L594 "View in source") [&#x24C9;][1]
+
 *(Number)*: The inner padding of the chart that doesn't affect dimensions *(px)*.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:sampleRate" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L618" title="View in source">`xStats#sampleRate`</a>
+
+<!-- div -->
+
+### `xStats.prototype.sampleRate`
+<a id="xstatsprototypesamplerate" href="#xstatsprototypesamplerate">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L618 "View in source") [&#x24C9;][1]
+
 *(Number)*: The rate at which the "sample" event is emitted *(secs)*.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:width" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L586" title="View in source">`xStats#width`</a>
+
+<!-- div -->
+
+### `xStats.prototype.width`
+<a id="xstatsprototypewidth" href="#xstatsprototypewidth">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L586 "View in source") [&#x24C9;][1]
+
 *(Number)*: The width of the chart *(px)*.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:addListener" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L330" title="View in source">`xStats#addListener(type, listener)`</a>
+
+<!-- div -->
+
+### `xStats.prototype.addListener(type, listener)`
+<a id="xstatsprototypeaddlistenertype-listener" href="#xstatsprototypeaddlistenertype-listener">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L330 "View in source") [&#x24C9;][1]
+
 Registers a single listener for the specified event type(s).
-[&#9650;][1]
 
 #### Arguments
 1. `type` *(String)*: The event type.
@@ -230,14 +272,20 @@ xs.addListener('sample', listener);
 xs.addListener('start sample', listener);
 ~~~
 
+* * *
+
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:emit" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L347" title="View in source">`xStats#emit(type)`</a>
+
+<!-- div -->
+
+### `xStats.prototype.emit(type)`
+<a id="xstatsprototypeemittype" href="#xstatsprototypeemittype">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L347 "View in source") [&#x24C9;][1]
+
 Executes all registered listeners of the specified event type.
-[&#9650;][1]
 
 #### Arguments
 1. `type` *(String|Object)*: The event type or object.
@@ -245,23 +293,35 @@ Executes all registered listeners of the specified event type.
 #### Returns
 *(Boolean)*: Returns `true` if all listeners were executed, else `false`.
 
+* * *
+
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:on" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L626" title="View in source">`xStats#on`</a>
+
+<!-- div -->
+
+### `xStats.prototype.on`
+<a id="xstatsprototypeon" href="#xstatsprototypeon">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L626 "View in source") [&#x24C9;][1]
+
 Alias of [`xStats#addListener`](#xStats:addListener).
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:removeAllListeners" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L409" title="View in source">`xStats#removeAllListeners(type)`</a>
+
+<!-- div -->
+
+### `xStats.prototype.removeAllListeners(type)`
+<a id="xstatsprototyperemovealllistenerstype" href="#xstatsprototyperemovealllistenerstype">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L409 "View in source") [&#x24C9;][1]
+
 Unregisters all listeners or those for the specified event type(s).
-[&#9650;][1]
 
 #### Arguments
 1. `type` *(String)*: The event type.
@@ -281,14 +341,20 @@ xs.removeAllListeners('sample');
 xs.removeAllListeners('start sample complete');
 ~~~
 
+* * *
+
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:removeListener" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L378" title="View in source">`xStats#removeListener(type, listener)`</a>
+
+<!-- div -->
+
+### `xStats.prototype.removeListener(type, listener)`
+<a id="xstatsprototyperemovelistenertype-listener" href="#xstatsprototyperemovelistenertype-listener">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L378 "View in source") [&#x24C9;][1]
+
 Unregisters a single listener for the specified event type(s).
-[&#9650;][1]
 
 #### Arguments
 1. `type` *(String)*: The event type.
@@ -306,6 +372,8 @@ xs.removeListener('sample', listener);
 xs.removeListener('start sample', listener);
 ~~~
 
+* * *
+
 <!-- /div -->
 
 
@@ -314,31 +382,49 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-## `xStats#fps`
+## `xStats.prototype.fps`
 
 <!-- div -->
 
-### <a id="xStats:fps" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L634" title="View in source">`xStats#fps`</a>
+
+<!-- div -->
+
+### `xStats.prototype.fps`
+<a id="xstatsprototypefps" href="#xstatsprototypefps">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L634 "View in source") [&#x24C9;][1]
+
 *(Object)*: The "frames per second" display mode options object.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:fps.bg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L642" title="View in source">`xStats#fps.bg`</a>
+
+<!-- div -->
+
+### `xStats.prototype.fps.bg`
+<a id="xstats-fpsbg" href="#xstats-fpsbg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L642 "View in source") [&#x24C9;][1]
+
 *(String)*: The background color of the chart for the display mode.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:fps.fg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L650" title="View in source">`xStats#fps.fg`</a>
+
+<!-- div -->
+
+### `xStats.prototype.fps.fg`
+<a id="xstats-fpsfg" href="#xstats-fpsfg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L650 "View in source") [&#x24C9;][1]
+
 *(String)*: The foreground color of the chart for the display mode.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
@@ -348,31 +434,49 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-## `xStats#mem`
+## `xStats.prototype.mem`
 
 <!-- div -->
 
-### <a id="xStats:mem" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L684" title="View in source">`xStats#mem`</a>
+
+<!-- div -->
+
+### `xStats.prototype.mem`
+<a id="xstatsprototypemem" href="#xstatsprototypemem">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L684 "View in source") [&#x24C9;][1]
+
 *(Object)*: The "memory" display mode options object.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:mem.bg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L692" title="View in source">`xStats#mem.bg`</a>
+
+<!-- div -->
+
+### `xStats.prototype.mem.bg`
+<a id="xstats-membg" href="#xstats-membg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L692 "View in source") [&#x24C9;][1]
+
 *(String)*: The background color of the chart for the display mode.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:mem.fg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L700" title="View in source">`xStats#mem.fg`</a>
+
+<!-- div -->
+
+### `xStats.prototype.mem.fg`
+<a id="xstats-memfg" href="#xstats-memfg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L700 "View in source") [&#x24C9;][1]
+
 *(String)*: The foreground color of the chart for the display mode.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
@@ -382,31 +486,49 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-## `xStats#ms`
+## `xStats.prototype.ms`
 
 <!-- div -->
 
-### <a id="xStats:ms" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L659" title="View in source">`xStats#ms`</a>
+
+<!-- div -->
+
+### `xStats.prototype.ms`
+<a id="xstatsprototypems" href="#xstatsprototypems">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L659 "View in source") [&#x24C9;][1]
+
 *(Object)*: The "millisecond" display mode options object.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:ms.bg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L667" title="View in source">`xStats#ms.bg`</a>
+
+<!-- div -->
+
+### `xStats.prototype.ms.bg`
+<a id="xstats-msbg" href="#xstats-msbg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L667 "View in source") [&#x24C9;][1]
+
 *(String)*: The background color of the chart for the display mode.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
 
 <!-- div -->
 
-### <a id="xStats:ms.fg" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L675" title="View in source">`xStats#ms.fg`</a>
+
+<!-- div -->
+
+### `xStats.prototype.ms.fg`
+<a id="xstats-msfg" href="#xstats-msfg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L675 "View in source") [&#x24C9;][1]
+
 *(String)*: The foreground color of the chart for the display mode.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
@@ -420,12 +542,18 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-### <a id="xStats.Event" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L52" title="View in source">`xStats.Event(type)`</a>
+
+<!-- div -->
+
+### `xStats.Event(type)`
+<a id="xstatseventtype" href="#xstatseventtype">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L52 "View in source") [&#x24C9;][1]
+
 The Event constructor.
-[&#9650;][1]
 
 #### Arguments
 1. `type` *(String|Object)*: The event type.
+
+* * *
 
 <!-- /div -->
 
@@ -436,15 +564,18 @@ The Event constructor.
 <!-- div -->
 
 ## `xStats.Event.prototype`
-### <a id="xStats.Event" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L52" title="View in source">`xStats.Event(type)`</a>
-The Event constructor.
-[&#9650;][1]
 
 <!-- div -->
 
-### <a id="xStats.Event:type" href="https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L724" title="View in source">`xStats.Event#type`</a>
+
+<!-- div -->
+
+### `xStats.Event.prototype.type`
+<a id="xstatseventprototypetype" href="#xstatseventprototypetype">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L724 "View in source") [&#x24C9;][1]
+
 *(String)*: The event type.
-[&#9650;][1]
+
+* * *
 
 <!-- /div -->
 
