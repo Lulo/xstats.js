@@ -88,9 +88,6 @@
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsoptions"></a>`xStats([options={}])`
 <a href="#xstatsoptions">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L95 "View in source") [&#x24C9;][1]
 
@@ -136,9 +133,6 @@ document.body.appendChild(stats.element);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatssubclasses"></a>`xStats.subclasses`
 <a href="#xstatssubclasses">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L566 "View in source") [&#x24C9;][1]
 
@@ -158,9 +152,6 @@ document.body.appendChild(stats.element);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypeheight"></a>`xStats.prototype.height`
 <a href="#xstatsprototypeheight">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L578 "View in source") [&#x24C9;][1]
 
@@ -169,9 +160,6 @@ document.body.appendChild(stats.element);
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -188,9 +176,6 @@ document.body.appendChild(stats.element);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypemode"></a>`xStats.prototype.mode`
 <a href="#xstatsprototypemode">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L610 "View in source") [&#x24C9;][1]
 
@@ -199,9 +184,6 @@ document.body.appendChild(stats.element);
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -218,9 +200,6 @@ document.body.appendChild(stats.element);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypesamplerate"></a>`xStats.prototype.sampleRate`
 <a href="#xstatsprototypesamplerate">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L618 "View in source") [&#x24C9;][1]
 
@@ -233,9 +212,6 @@ document.body.appendChild(stats.element);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypewidth"></a>`xStats.prototype.width`
 <a href="#xstatsprototypewidth">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L586 "View in source") [&#x24C9;][1]
 
@@ -244,9 +220,6 @@ document.body.appendChild(stats.element);
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -279,9 +252,6 @@ xs.addListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypeemittype"></a>`xStats.prototype.emit(type)`
 <a href="#xstatsprototypeemittype">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L347 "View in source") [&#x24C9;][1]
 
@@ -300,9 +270,6 @@ Executes all registered listeners of the specified event type.
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypeon"></a>`xStats.prototype.on`
 <a href="#xstatsprototypeon">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L626 "View in source") [&#x24C9;][1]
 
@@ -311,9 +278,6 @@ Alias of [`xStats#addListener`](#xStats:addListener).
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -344,9 +308,6 @@ xs.removeAllListeners('start sample complete');
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -386,9 +347,6 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypefps"></a>`xStats.prototype.fps`
 <a href="#xstatsprototypefps">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L634 "View in source") [&#x24C9;][1]
 
@@ -401,9 +359,6 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstats-fpsbg"></a>`xStats.prototype.fps.bg`
 <a href="#xstats-fpsbg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L642 "View in source") [&#x24C9;][1]
 
@@ -412,9 +367,6 @@ xs.removeListener('start sample', listener);
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -438,9 +390,6 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypemem"></a>`xStats.prototype.mem`
 <a href="#xstatsprototypemem">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L684 "View in source") [&#x24C9;][1]
 
@@ -453,9 +402,6 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstats-membg"></a>`xStats.prototype.mem.bg`
 <a href="#xstats-membg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L692 "View in source") [&#x24C9;][1]
 
@@ -464,9 +410,6 @@ xs.removeListener('start sample', listener);
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -490,9 +433,6 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatsprototypems"></a>`xStats.prototype.ms`
 <a href="#xstatsprototypems">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L659 "View in source") [&#x24C9;][1]
 
@@ -505,9 +445,6 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstats-msbg"></a>`xStats.prototype.ms.bg`
 <a href="#xstats-msbg">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L667 "View in source") [&#x24C9;][1]
 
@@ -516,9 +453,6 @@ xs.removeListener('start sample', listener);
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -542,9 +476,6 @@ xs.removeListener('start sample', listener);
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="xstatseventtype"></a>`xStats.Event(type)`
 <a href="#xstatseventtype">#</a> [&#x24C8;](https://github.com/bestiejs/xstats.js/blob/master/xstats.js#L52 "View in source") [&#x24C9;][1]
 
@@ -564,9 +495,6 @@ The Event constructor.
 <!-- div -->
 
 ## `xStats.Event.prototype`
-
-<!-- div -->
-
 
 <!-- div -->
 
