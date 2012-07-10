@@ -39,23 +39,6 @@ document.body.appendChild(stats.element);
   * MacOS: Open `~/Library/Preferences/com.apple.Safari.plist` file for editing, and
     check `WebKitMemoryInfoEnabled`
 
-## Cloning this repo
-
-To clone this repository including all submodules, using Git 1.6.5 or later:
-
-~~~ bash
-git clone --recursive https://github.com/bestiejs/xstats.js.git
-cd xstats.js
-~~~
-
-For older Git versions, just use:
-
-~~~ bash
-git clone https://github.com/bestiejs/xstats.js.git
-cd xstats.js
-git submodule update --init
-~~~
-
 ## Author
 
 * [John-David Dalton](http://allyoucanleet.com/)
