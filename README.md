@@ -23,10 +23,10 @@ For more information on the techniques and code behind xStats.js please check ou
 
 ## Usage
 
-~~~ js
+```js
 var stats = new xStats;
 document.body.appendChild(stats.element);
-~~~
+```
 
 ## Enable MEM
 

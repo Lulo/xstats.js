@@ -5,7 +5,7 @@
 
 <!-- div -->
 
-## <a id="toc"></a>`xStats`
+## <a id="xStats"></a>`xStats`
 * [`xStats`](#xstatsoptions)
 * [`xStats.subclasses`](#xstatssubclasses)
 
@@ -97,7 +97,7 @@ The xStats constructor.
 1. `[options={}]` *(Object)*: Options object.
 
 #### Example
-~~~ js
+```js
 // basic usage (the `new` operator is optional)
 var stats = new xStats;
 
@@ -124,7 +124,7 @@ var stats = new xStats({
 
 // insert into document
 document.body.appendChild(stats.element);
-~~~
+```
 
 * * *
 
@@ -237,13 +237,13 @@ Registers a single listener for the specified event type(s).
 *(Object)*: The xStats instance.
 
 #### Example
-~~~ js
+```js
 // register a listener for an event type
 xs.addListener('sample', listener);
 
 // register a listener for multiple event types
 xs.addListener('start sample', listener);
-~~~
+```
 
 * * *
 
@@ -294,7 +294,7 @@ Unregisters all listeners or those for the specified event type(s).
 *(Object)*: The xStats instance.
 
 #### Example
-~~~ js
+```js
 // unregister all listeners
 xs.removeAllListeners();
 
@@ -303,7 +303,7 @@ xs.removeAllListeners('sample');
 
 // unregister all listeners for multiple event types
 xs.removeAllListeners('start sample complete');
-~~~
+```
 
 * * *
 
@@ -325,13 +325,13 @@ Unregisters a single listener for the specified event type(s).
 *(Object)*: The xStats instance.
 
 #### Example
-~~~ js
+```js
 // unregister a listener for an event type
 xs.removeListener('sample', listener);
 
 // unregister a listener for multiple event types
 xs.removeListener('start sample', listener);
-~~~
+```
 
 * * *
 
@@ -514,4 +514,4 @@ The Event constructor.
 <!-- /div -->
 
 
-  [1]: #toc "Jump back to the TOC."
+  [1]: #xStats "Jump back to the TOC."
