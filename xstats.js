@@ -12,7 +12,7 @@
     memoryNS.memory && memoryNS;
 
   /** Shortcut used to convert array-like objects to arrays */
-  var slice = [].slice;
+  var slice = Array.prototype.slice;
 
   /** Internal cached used by various methods */
   var cache = {
@@ -275,6 +275,16 @@
   }
 
   /**
+   * Generates a timestamp of the current UTC date and time.
+   *
+   * @private
+   * @returns {Number} The timestamp.
+   */
+  var now = Date.now || function() {
+    return +new Date;
+  };
+
+  /**
    * Removes a css class name from an element's className property.
    *
    * @private
@@ -512,29 +522,27 @@
         data = cache.data,
         frameTimes = cache.frameTimes,
         fps = 0,
-        now = new Date,
-        secValue = now - cache.lastSecond,
-        lastSec = new Date - 1000;
+        stamp = now(),
+        secValue = stamp - cache.lastSecond,
+        lastSec = stamp - 1000;
 
     // skip first call
     if (cache.lastTime != null) {
       // record data
-      frameTimes.push(new Date);
-      record('ms', now - cache.lastTime);
+      frameTimes.push(stamp);
+      record('ms', stamp - cache.lastTime);
       if (secValue > 999) {
         length = frameTimes.length;
-        //console.log('length', length);
         while (length--) {
           if (frameTimes[length] < lastSec) {
             break;
           }
           fps++;
         }
-        //console.log('fps', fps);
         record('fps', fps);
         memoryNS && record('mem', memoryNS.memory.usedJSHeapSize / 1048576);
         cache.frameTimes = frameTimes.slice(length);
-        cache.lastSecond = now;
+        cache.lastSecond = stamp;
       }
       // render instances
       each(xStats.subclasses, function(subclass) {
@@ -542,16 +550,16 @@
             mode = subclass.mode,
             entry = data[mode][0];
 
-        if (entry && (mode == 'ms' || cache.lastSecond == now)) {
+        if (entry && (mode == 'ms' || cache.lastSecond == stamp)) {
           setTitle(subclass, entry.value);
           setBar(subclass, canvas.insertBefore(canvas.lastChild, canvas.firstChild), entry.percent);
         }
       });
     }
     else {
-      cache.lastSecond = now;
+      cache.lastSecond = stamp;
     }
-    cache.lastTime = now;
+    cache.lastTime = stamp;
   }
 
   /*--------------------------------------------------------------------------*/
@@ -731,7 +739,7 @@
   // expose xStats
   // use square bracket notation so Closure Compiler won't munge `xStats`
   // http://code.google.com/closure/compiler/docs/api-tutorial3.html#export
-  window['xStats'] = xStats;
+  window.xStats = xStats;
 
   // ensure we can read memory info
   memoryNS = memoryNS && !!memoryNS.memory.usedJSHeapSize && memoryNS;
@@ -762,6 +770,7 @@
     '.xstats ul{margin:0;padding:0;list-style:none;overflow:hidden}' +
     '.xstats li{float:right;height:100%;margin-left:-4px}' +
     '.xstats .bg{opacity:.5;filter:alpha(opacity=50)}' +
-    '.xstats{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}');
+    '.xstats{cursor:pointer;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}'
+  );
 
 }(this, this.document));
