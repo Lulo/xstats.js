@@ -5,51 +5,42 @@
  * Modified by John-David Dalton <http://allyoucanleet.com/>
  */
 (function(window, document) {
+  'use strict';
 
-  /** bunny image object */
-  var bunnyImage,
+  /** Bunny image object */
+  var bunnyImage;
 
-  /** background image object */
-  grassImage,
+  /** Background image object */
+  var grassImage;
 
-  /** fill style object of the background image */
-  fillStyle,
+  /** Fill style object of the background image */
+  var fillStyle;
 
-  /** element used to display the bunny count */
-  status,
+  /** Element used to display the bunny count */
+  var status;
 
-  /** canvas element */
-  canvas = document.createElement('canvas'),
+  /** Canvas element */
+  var canvas = document.createElement('canvas');
 
-  /** canvas context object */
-  ctx = ('getContext' in canvas) && canvas.getContext('2d'),
+  /** Canvas context object */
+  var ctx = ('getContext' in canvas) && canvas.getContext('2d');
 
-  /** affect of simulated gravity */
-  gravity = 3,
+  /** Affect of simulated gravity */
+  var gravity = 3;
 
-  /** right bounding box coordinate */
-  maxX = 614,
+  /** Bounding box coordinates */
+  var maxX = 614,
+      maxY = 443,
+      minX = 0,
+      minY = 0;
 
-  /** left bounding box coordinate */
-  minX = 0,
+  /** Math shortcuts */
+  var random = Math.random,
+      round = Math.round;
 
-  /** bottom bounding box coordinate */
-  maxY = 443,
-
-  /** top bounding box coordinate */
-  minY = 0,
-
-  /** shortcut for Math.random */
-  random = Math.random,
-
-  /** shortcut for Math.round */
-  round = Math.round,
-
-  /** height of the canvas element */
-  height = 480,
-
-  /** width of the canvas element */
-  width = 640;
+  /** Dimensions of the canvas element */
+  var height = 480,
+      width = 640;
 
   /*--------------------------------------------------------------------------*/
 
@@ -58,7 +49,7 @@
    * @constructor
    */
   function Bunny() {
-    this.speedX = random() * 10;
+    this.speedX = (random() * 10);
     this.speedY = (random() * 10) - 5;
   }
 
@@ -71,7 +62,7 @@
    */
   function addBunnies(number) {
     var bunnies = Bunny.bunnies;
-    number = typeof number == 'number' ? number : 200;
+    number = (typeof number == 'number') ? number : 200;
     while (number--) {
       bunnies.push(new Bunny);
     }
@@ -212,12 +203,15 @@
     addListener(window, 'load', function() {
       var body = document.body,
           container = document.createElement('div'),
-          callback = function() { render(); reqFrame(callback); },
-          reqFrame = window.requestAnimationFrame ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame;
+          callback = function() { render(); reqFrame(callback); };
+
+      var reqFrame = (
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame
+      );
 
       container.id = 'bunnymark';
       container.style.cssText =
