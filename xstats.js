@@ -172,7 +172,7 @@
     // add element event listeners
     if (typeof element.addEventListener != 'undefined') {
       element.addEventListener('click', createSwapMode(me), false);
-    } else if (element.attachEvent != 'undefined') {
+    } else if (typeof element.attachEvent != 'undefined') {
       element.attachEvent('onclick', createSwapMode(me));
     }
 
