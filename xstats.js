@@ -133,7 +133,7 @@
     // sweet spot for font-size, height, and width
     tmp.titleHeight = round(height * 0.28);
     tmp.barWidth = clipped + 4;
-    tmp.fontSize = (tmp.titleHeight / 22.2).toFixed(2);
+    tmp.fontSize = tmp.titleHeight;
     tmp.innerWidth = clipped * width;
     tmp.innerHeight = height - tmp.titleHeight;
     tmp.padding = round((me.width - tmp.innerWidth) / 2);
@@ -149,7 +149,7 @@
       interpolate(
         '.#{uid},.#{uid} .bg,.#{uid} .fg{width:#{width}px;height:#{height}px}' +
         '.#{uid} .mi{margin:#{padding}px;width:#{innerWidth}px}' +
-        '.#{uid} p{font-size:#{fontSize}em;height:#{titleHeight}px;width:#{innerWidth}px}' +
+        '.#{uid} p{font-size:#{fontSize}px;height:#{titleHeight}px;line-height:#{titleHeight}px;width:#{innerWidth}px}' +
         '.#{uid} ul{height:#{innerHeight}px;width:#{innerWidth}px}' +
         '.#{uid} li{width:#{barWidth}px}', tmp) +
       interpolate(
