@@ -19,7 +19,7 @@ For more information on the techniques and code behind xStats.js please check ou
 
 ## Screenshots
 
-![xStats](https://github.com/bestiejs/xstats.js/raw/master/xstats.png)
+![xStats](https://github.com/victor-homyakov/xstats.js/raw/master/xstats.png)
 
 ## Usage
 
