@@ -1,0 +1,19 @@
+{
+  "name": "xstats.js",
+  "main": "xstats.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Lulo/xstats.js",
+  "authors": [
+    "Felix Lau <felixlaumon@gmail.com>"
+  ],
+  "description": "A cross-browser JavaScript Performance Monitor.",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "xstats.js",
+  "version": "0.0.1",
+  "description": "A cross-browser JavaScript Performance Monitor.",
+  "main": "xstats.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Lulo/xstats.js.git"
+  },
+  "author": "",
+  "private": true,
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Lulo/xstats.js/issues"
+  },
+  "homepage": "https://github.com/Lulo/xstats.js"
+}
