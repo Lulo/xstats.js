@@ -748,8 +748,31 @@
     // ensure we can read memory info
     memoryNS = memoryNS && !!memoryNS.memory.usedJSHeapSize && memoryNS;
 
+    var requestAnimationFrame = window.requestAnimationFrame || (function() {
+        // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+        // Modified from https://gist.github.com/paulirish/1579671
+        var lastTime = 0;
+        var requestAnimationFrame;
+        var vendors = ['ms', 'moz', 'webkit', 'o'];
+        for (var x = 0; x < vendors.length && !requestAnimationFrame; ++x) {
+            requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        }
+
+        return requestAnimationFrame || function requestAnimationFrame (callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }());
+
     // start recording
-    setInterval(update, 1000 / 60);
+    (function updateLoop () {
+        update();
+        requestAnimationFrame(updateLoop);
+    })();
 
     // start sampling (once every two seconds)
     setInterval(function() {
